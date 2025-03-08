@@ -2,12 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import { compileMDX } from 'next-mdx-remote/rsc'
 
-const contentDir = path.join(process.cwd(), 'src/app/posts/_mdx-content')
+const contentDir = path.join(process.cwd(), 'src/app/_mdx-content')
 
 export async function getBlogBySlug(slug: string) {
   const fileName = slug + '.mdx'
   const filePath = path.join(contentDir, fileName)
-  const fileContent = fs.readFileSync(filePath, 'utf8')
+  const fileContent = fs.readFileSync(filePath, 'utf-8')
   const { frontmatter, content } = await compileMDX<{
     title: string
     author: string
@@ -18,6 +18,7 @@ export async function getBlogBySlug(slug: string) {
     source: fileContent,
     options: { parseFrontmatter: true }
   })
+
   return {
     frontmatter,
     content,
@@ -51,11 +52,14 @@ export function formatDate(date: string, includeRelative = true) {
   let formattedDate = ''
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}anos atrás`
+    if (yearsAgo === 1) formattedDate = 'ano passado'
+    else formattedDate = `${yearsAgo} anos atrás`
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}meses atrás`
+    if (monthsAgo === 1) formattedDate = `${monthsAgo} mês atrás`
+    else formattedDate = `${monthsAgo} meses atrás`
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}dias atrás`
+    if (daysAgo === 1) formattedDate = 'ontem'
+    else formattedDate = `${daysAgo} dias atrás`
   } else {
     formattedDate = 'hoje'
   }

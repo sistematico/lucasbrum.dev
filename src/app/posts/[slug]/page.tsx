@@ -19,34 +19,42 @@
 // }
 
 import { notFound } from 'next/navigation'
-// import { CustomMDX } from '../../components/mdx'
+// import { CustomMDX } from '@/components/mdx'
+// import { useMDXComponents } from '@/mdx-components'
 import { formatDate, getBlogBySlug, getAllBlogSlug } from '../utils'
 // import { baseUrl } from '../../sitemap'
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:3000' : 'http://localhost:3000'
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://lucasbrum.dev'
+    : 'http://localhost:3000'
 
 interface PageProps {
   params: Promise<{
-    slug: string;
-  }>;
+    slug: string
+  }>
 }
 
 export async function generateStaticParams() {
   return getAllBlogSlug()
 }
 
-export async function generateMetadata({ params }: { params: Promise<{
-  slug: string;
-}> }) {
-  const { slug } = await params;
-  const post = await getBlogBySlug(slug);
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{
+    slug: string
+  }>
+}) {
+  const { slug } = await params
+  const post = await getBlogBySlug(slug)
   if (!post) return
 
   const {
     title,
     publishDate: publishedTime,
     summary: description,
-    image,
+    image
   } = post.frontmatter
   const ogImage = image
     ? image
@@ -63,27 +71,25 @@ export async function generateMetadata({ params }: { params: Promise<{
       url: `${baseUrl}/posts/${post.slug}`,
       images: [
         {
-          url: ogImage,
-        },
-      ],
+          url: ogImage
+        }
+      ]
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImage],
-    },
+      images: [ogImage]
+    }
   }
 }
 
 export default async function Blog({ params }: PageProps) {
   // const post = (await getBlogPosts()).find((post) => post.slug === params.slug)
-  const { slug } = await params;
+  const { slug } = await params
   // const posts = await getBlogPosts();
-  const post = await getBlogBySlug(slug);
+  const post = await getBlogBySlug(slug)
   // const post = posts.find((post) => post.slug === slug);
-
-  
 
   if (!post) notFound()
 
@@ -106,9 +112,9 @@ export default async function Blog({ params }: PageProps) {
             url: `${baseUrl}/posts/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio',
-            },
-          }),
+              name: 'My Portfolio'
+            }
+          })
         }}
       />
       <h1 className="title font-semibold text-2xl tracking-tighter">
@@ -120,7 +126,7 @@ export default async function Blog({ params }: PageProps) {
         </p>
       </div>
       <article className="prose">
-        {/* <CustomMDX source={post.content} /> */}
+        {/* <CustomMDX source={{ compiledSource: post.content }} /> */}
         {post.content}
       </article>
     </section>
