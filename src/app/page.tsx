@@ -1,19 +1,20 @@
+import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Home() {
   return (
     <section>
-      <a href="/" target="_blank">
+      <Link href="/">
         <Image
-          src="/images/logo.svg"
-          alt="Paxá"
-          className="block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 hover:grayscale-0"
+          src="/images/avatar.jpg"
+          alt="Lucas Saliés Brum"
+          className="block rounded-full border-6 border-white lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 transition-all duration-500  grayscale-100 hover:grayscale-0"
           unoptimized
           width={160}
           height={160}
           priority
         />
-      </a>
+      </Link>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           Meu nome é Lucas, sou especialista em TypeScript, uso frameworks como

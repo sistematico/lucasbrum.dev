@@ -1,5 +1,25 @@
 @use 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/* Nossas novas variáveis */
+// :root {
+//   --color-body: #111827; /* cinza escuro */
+//   --color-background: #f9fafb; /* cinza claro */
+// }
+
+// [data-theme="dark"] {
+//   --color-body: #f9fafb; /* cinza claro */
+//   --color-background: #111827; /* cinza claro */
+// }
+
+// @layer base {
+//   body {
+//     @apply bg-background text-body;
+//   }
+// }
+
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;

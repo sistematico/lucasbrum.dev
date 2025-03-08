@@ -1,8 +1,10 @@
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://lucasbrum.dev' : 'http://localhost:3000'
+
 export const metaData = {
-  baseUrl: 'https://paxa.dev',
-  title: 'Paxá',
-  name: 'Paxá',
-  ogImage: '/images/favicon.png',
+  baseUrl,
+  title: 'Lucas Brum',
+  name: 'Lucas Saliés Brum',
+  ogImage: '/images/avatar.jpg',
   description:
     'Desenvolvedor web desde 1999 usando TypeScript e com vasta experiência em Linux.'
 }
