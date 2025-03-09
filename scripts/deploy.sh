@@ -5,8 +5,8 @@ PATH=$PATH:/home/nginx/.bun/bin
 DEPLOY_TIMESTAMP=$(date +%Y%m%d%H%M%S)
 BACKUP_DIR="/var/backups/lucasbrum.dev"
 # CURRENT_DIR=${{ secrets.PROJECT_PATH }}
-CURRENT_DIR="/var/www/rhythm.place"
-HEALTH_CHECK_URL="http://localhost:3000/api/health" # Ajuste conforme sua aplicação
+CURRENT_DIR="/var/www/lucasbrum.dev"
+HEALTH_CHECK_URL="http://localhost:4040/api/health" # Ajuste conforme sua aplicação
 MAX_HEALTH_CHECKS=10
 HEALTH_CHECK_INTERVAL=3
 
@@ -14,11 +14,11 @@ HEALTH_CHECK_INTERVAL=3
 mkdir -p $BACKUP_DIR
 
 # Backup da configuração atual
-[ -f .env.production ] && cp .env.production /tmp/env.rhythm
+[ -f .env.production ] && cp .env.production /tmp/env.lucasbrum
 
 # Backup da versão atual funcionando
 echo "Fazendo backup da versão atual..."
-sudo systemctl is-active rhythm && {
+sudo systemctl is-active lucasbrum && {
     cd $CURRENT_DIR
     mkdir -p $BACKUP_DIR/$DEPLOY_TIMESTAMP
     cp -a .next node_modules package.json bun.lockb .env.production $BACKUP_DIR/$DEPLOY_TIMESTAMP/
@@ -34,7 +34,7 @@ perform_rollback() {
         
         if [ -d $BACKUP_DIR/$ROLLBACK_VERSION ]; then
             echo "Restaurando versão: $ROLLBACK_VERSION"
-            sudo systemctl stop rhythm
+            sudo systemctl stop lucasbrum
             
             # Restaurar arquivos críticos da última versão funcional
             cp -a $BACKUP_DIR/$ROLLBACK_VERSION/.next $CURRENT_DIR/
@@ -43,7 +43,7 @@ perform_rollback() {
                 cp $BACKUP_DIR/$ROLLBACK_VERSION/.env.production $CURRENT_DIR/
             
             # Iniciar serviço com a versão antiga
-            sudo systemctl start rhythm
+            sudo systemctl start lucasbrum
             
             # Verificar se o rollback foi bem-sucedido
             echo "Verificando saúde após rollback..."
@@ -69,28 +69,28 @@ perform_rollback() {
 trap perform_rollback ERR
 
 # Parar o serviço
-sudo /usr/bin/systemctl stop rhythm
+sudo /usr/bin/systemctl stop lucasbrum
 
 # Limpeza e preparação para o novo build
 git clean -fxd
 
 # Restaurar variáveis de ambiente
-[ -f /tmp/env.rhythm ] && cp /tmp/env.rhythm .env.production
+[ -f /tmp/env.lucasbrum ] && cp /tmp/env.lucasbrum .env.production
 
 # Instalar dependências e construir
 echo "Instalando dependências..."
 bun install
 
-echo "Atualizando banco de dados..."
-bun run db:push
-bun run db:seed
+#echo "Atualizando banco de dados..."
+#bun run db:push
+#bun run db:seed
 
 echo "Construindo aplicação..."
 bun run build
 
 # Iniciar serviço
 echo "Iniciando serviço..."
-sudo /usr/bin/systemctl start rhythm
+sudo /usr/bin/systemctl start lucasbrum
 
 # Verificar saúde do serviço após o deploy
 echo "Verificando saúde do serviço..."
