@@ -11,7 +11,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lucasbrum.dev" />
     <meta property="og:image" content="https://avatars.githubusercontent.com/u/97509?v=4" />
-    <!--# if expr="$status = 502" -->
+    <!--# if expr="$status == 502" -->
     <meta http-equiv="refresh" content="5; url=https://lucasbrum.dev" />
     <!--# endif -->
     <style>
@@ -67,7 +67,7 @@
         alt="Lucas Brum"
       />
       <h1>Lucas Saliés Brum</h1>
-      <!--# if expr="$status = 500 || $status = 502" -->
+      <!--# if expr="$status == 500 || $status == 502" -->
       <h2>Estamos atualizando nosso site.</h2>
       <p>Você será redirecionado em 5 segundos</p>
       <!--# else -->
