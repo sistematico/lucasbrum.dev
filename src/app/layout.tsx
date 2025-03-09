@@ -1,9 +1,10 @@
-import type { Metadata } from 'next'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Nunito, Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
 import { metaData } from '@/config'
+import type { Metadata } from 'next'
 import '@/styles/main.scss'
 
 const nunito = Nunito({
@@ -53,6 +54,7 @@ export default function RootLayout({
             <Footer />
           </main>
         </Providers>
+        <GoogleAnalytics gaId="G-MXKM892NMZ" />
       </body>
     </html>
   )

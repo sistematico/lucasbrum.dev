@@ -1,13 +1,7 @@
 'use client'
 
-import React from 'react'
-import {
-  FaXTwitter,
-  FaGithub,
-  FaInstagram,
-  FaRss,
-  FaLinkedinIn
-} from 'react-icons/fa6'
+// import React from 'react'
+import { FaXTwitter, FaGithub, FaInstagram, FaRss, FaLinkedinIn } from 'react-icons/fa6'
 import { TbMailFilled } from 'react-icons/tb'
 import { metaData, socialLinks } from '@/config'
 
@@ -34,7 +28,7 @@ function SocialLinks() {
       <SocialLink href={socialLinks.instagram} icon={FaInstagram} />
       <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} />
       <SocialLink href={socialLinks.email} icon={TbMailFilled} />
-      <a href="/rss.xml" target="_self">
+      <a href="/sitemap.xml" target="_self">
         <FaRss />
       </a>
     </div>
@@ -44,7 +38,7 @@ function SocialLinks() {
 export function Footer() {
   return (
     <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]">
-      <time>© {YEAR}</time> {metaData.title}
+      <time>© {YEAR}</time> {metaData.name}
       <style jsx>{`
         @media screen and (max-width: 480px) {
           article {

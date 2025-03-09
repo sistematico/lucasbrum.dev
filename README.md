@@ -1,3 +1,11 @@
+# lucasbrum.dev
+
+<p align="center">
+  <img width="200" height="200" src="https://avatars.githubusercontent.com/u/97509?v=4" style="border-radius: 50%; border: 3px solid white;" />
+</p>
+
+[![Deploy](https://github.com/sistematico/lucasbrum.dev/actions/workflows/deploy.yml/badge.svg)](https://github.com/sistematico/lucasbrum.dev/actions/workflows/deploy.yml)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

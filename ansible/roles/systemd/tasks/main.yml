@@ -1,7 +1,7 @@
 - name: Alterar as unidades do systemd
   ansible.builtin.copy:
-    src: etc/systemd/system/agrocomm.service
-    dest: /etc/systemd/system/agrocomm.service
+    src: etc/systemd/system/lucasbrum.service
+    dest: /etc/systemd/system/lucasbrum.service
     owner: root
     group: root
     mode: "0644"
@@ -14,21 +14,21 @@
 
 - name: >-
     Habilitar o usuario nginx para rodar:
-    sudo /usr/bin/systemctl restart|stop|start|status agrocomm,
+    sudo /usr/bin/systemctl restart|stop|start|status lucasbrum,
     sem necessidade de senha
   community.general.sudoers:
-    name: agrocomm
+    name: lucasbrum
     user: nginx
     commands:
-      - /usr/bin/systemctl stop agrocomm
-      - /usr/bin/systemctl start agrocomm
-      - /usr/bin/systemctl restart agrocomm
-      - /usr/bin/systemctl status agrocomm
+      - /usr/bin/systemctl stop lucasbrum
+      - /usr/bin/systemctl start lucasbrum
+      - /usr/bin/systemctl restart lucasbrum
+      - /usr/bin/systemctl status lucasbrum
     nopassword: true
 
 - name: Reiniciar as unidades do systemd
   ansible.builtin.systemd:
-    name: agrocomm.service
+    name: lucasbrum.service
     state: restarted
     enabled: true
     daemon_reload: true

@@ -31,21 +31,15 @@
     mode: "0644"
     force: true
   with_items:
-    - no-cache.conf
-    - cache.conf
     - deny.conf
-    - ac-errors.conf
-    - next.conf
+    - lb-errors.conf
 
 - name: Configure /etc/nginx/sites.d/ files
   ansible.builtin.template:
-    src: "files/etc/nginx/sites.d/{{ item }}"
-    dest: "/etc/nginx/sites.d/{{ item }}"
+    src: files/etc/nginx/sites.d/30-lucasbrum.dev.conf
+    dest: /etc/nginx/sites.d/30-lucasbrum.dev.conf
     mode: "0644"
     force: true
-  with_items:
-    - 20-cdn.agrocomm.com.br.conf
-    - 21-agrocomm.com.br.conf
 
 - name: Restart nginx
   ansible.builtin.service:

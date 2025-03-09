@@ -2,6 +2,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme inline {
+  // --color-background: var(--background);
+  // --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-nunito: var(--font-nunito);
+}
 
 /* Nossas novas variáveis */
 // :root {
@@ -50,7 +57,7 @@
 }
 
 body {
-  @apply bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200;
+  @apply bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 font-nunito;
 }
 
 h1 {
@@ -78,7 +85,21 @@ h6 {
 }
 
 a:not(.anchor):not(.logo):not(.social a):not(.projetos) {
-  @apply text-blue-600 dark:text-blue-400 underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply 
+    text-blue-600 
+    dark:text-blue-400 
+    no-underline 
+    decoration-neutral-400 
+    dark:decoration-neutral-600 
+    hover:underline
+    hover:decoration-indigo-500
+    underline-offset-2 
+    decoration-[0.18em]
+    duration-600
+    transition-all 
+    ;
+  // @apply relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right;
+  // @apply -bottom-1 right-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full;
 }
 
 .prose .anchor {

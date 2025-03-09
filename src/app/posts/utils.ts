@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { compileMDX } from 'next-mdx-remote/rsc'
 
-const contentDir = path.join(process.cwd(), 'src/app/_mdx-content')
+const contentDir = path.join(process.cwd(), '_posts')
 
 export async function getBlogBySlug(slug: string) {
   const fileName = slug + '.mdx'
