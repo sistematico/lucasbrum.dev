@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Projects() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-medium tracking-tight">Projetos</h1>
+      <h2 className="mb-16 text-xl font-medium tracking-tight">Projetos</h2>
       <div className="space-y-6">
         {projects.map((project, index) => (
           <a
@@ -18,7 +18,7 @@ export default function Projects() {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="projetos block group hover:opacity-80 transition-opacity duration-200"
+            className="projetos block group hover:opacity-80 transition-all duration-200 rounded-md bg-zinc-900 px-5 py-8"
           >
             <div className="flex flex-col">
               <div className="w-full flex justify-between items-baseline">

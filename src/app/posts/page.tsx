@@ -12,7 +12,8 @@ export default async function BlogPage() {
 
   return (
     <section>
-      <h1 className="font-semibold text-2xl tracking-tighter">Blog</h1>
+      <h2 className="text-2xl tracking-tight">Blog</h2>
+      <div className="mt-8">
       {blogs
         .sort((a, b) => {
           if (
@@ -25,7 +26,7 @@ export default async function BlogPage() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 my-4"
+            className="flex flex-col space-y-1 my-8 rounded-md bg-zinc-900 px-5 py-10"
             href={`/posts/${post.slug}`}
           >
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
@@ -37,7 +38,8 @@ export default async function BlogPage() {
               </p>
             </div>
           </Link>
-        ))} 
+        ))}
+        </div> 
 
 
 

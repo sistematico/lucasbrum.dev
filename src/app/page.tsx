@@ -10,7 +10,7 @@ export default function Home() {
         <Image
           src="/images/avatar.jpg"
           alt="Lucas Saliés Brum"
-          className="block rounded-full border-6 border-white lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 transition-all duration-500 hover:blur-none blur-xs sepia-100"
+          className="image-logo block rounded-full border-6 border-white lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5"
           unoptimized
           width={160}
           height={160}
