@@ -1,15 +1,21 @@
+'use client'
+
 import Link from 'next/link'
 import { ThemeSwitch } from '@/components/theme'
 import { metaData } from '@/config'
+import { usePathname } from 'next/navigation'
 
 const navItems = {
   '/posts': { name: 'Blog' },
-  '/projetos': { name: 'Projetos' }
+  '/projetos': { name: 'Projetos' },
+  '/contato': { name: 'Contato' }
 }
 
 export function Navbar() {
+  const pathname = usePathname()
+
   return (
-    <nav className="lg:mb-4 mb-3">
+    <nav>
       <div className="flex flex-col md:flex-row md:items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="logo text-3xl font-semibold tracking-tight">
@@ -21,7 +27,11 @@ export function Navbar() {
             <Link
               key={path}
               href={path}
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
+              className={
+                pathname === path
+                  ? 'transition-all text-blue-600 hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative'
+                  : 'transition-all text-black dark:text-white hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative'
+              }
             >
               {name}
             </Link>

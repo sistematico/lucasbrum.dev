@@ -1,39 +1,24 @@
-import React from 'react'
-import type { Metadata } from 'next'
 import { projects } from './data'
+import { metaData } from '@/config'
+import { Card } from '@/components/card'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Projetos',
-  description: 'Meus projetos'
+  title: `${metaData.title} - Projetos`,
+  description: 'Alguns de meus projetos'
 }
 
 export default function Projects() {
   return (
     <section>
-      <h2 className="mb-16 text-xl font-medium tracking-tight">Projetos</h2>
-      <div className="space-y-6">
+      <h2 className="text-xl font-medium tracking-tight">Projetos</h2>
+      <div>
         {projects.map((project, index) => (
-          <a
+          <Card
             key={index}
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="projetos block group hover:opacity-80 transition-all duration-200 rounded-md bg-zinc-900 px-5 py-8"
-          >
-            <div className="flex flex-col">
-              <div className="w-full flex justify-between items-baseline">
-                <span className="text-black dark:text-white font-medium tracking-tight">
-                  {project.title}
-                </span>
-                <span className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm">
-                  {project.year}
-                </span>
-              </div>
-              <p className="prose prose-neutral dark:prose-invert pt-3">
-                {project.description}
-              </p>
-            </div>
-          </a>
+            title={project.title}
+            description={project.description}
+          />
         ))}
       </div>
     </section>

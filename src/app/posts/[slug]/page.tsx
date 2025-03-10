@@ -19,7 +19,7 @@
 // }
 
 import { notFound } from 'next/navigation'
-// import { CustomMDX } from '@/components/mdx'
+import { CustomMDX } from '@/components/mdx'
 // import { useMDXComponents } from '@/mdx-components'
 import { formatDate, getBlogBySlug, getAllBlogSlug } from '../utils'
 // import { baseUrl } from '../../sitemap'
@@ -126,8 +126,8 @@ export default async function Blog({ params }: PageProps) {
         </p>
       </div>
       <article className="prose">
-        {/* <CustomMDX source={{ compiledSource: post.content }} /> */}
-        {post.content}
+        <CustomMDX source={post} />
+        {/* {post.content} */}
       </article>
     </section>
   )

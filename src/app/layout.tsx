@@ -48,7 +48,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
-          <main className="flex flex-col flex-auto min-w-0 max-w-[640px] w-full my-10">
+          <main className="flex flex-col flex-auto min-w-0 max-w-[640px] w-full space-y-5 my-10 mx-5 md:mx-0">
             <Navbar />
             {children}
             <Footer />

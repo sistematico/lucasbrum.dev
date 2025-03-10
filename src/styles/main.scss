@@ -3,29 +3,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  // --color-background: var(--background);
-  // --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-nunito: var(--font-nunito);
 }
-
-/* Nossas novas variáveis */
-// :root {
-//   --color-body: #111827; /* cinza escuro */
-//   --color-background: #f9fafb; /* cinza claro */
-// }
-
-// [data-theme="dark"] {
-//   --color-body: #f9fafb; /* cinza claro */
-//   --color-background: #111827; /* cinza claro */
-// }
-
-// @layer base {
-//   body {
-//     @apply bg-background text-body;
-//   }
-// }
 
 ::selection {
   background-color: #47a3f3;
@@ -60,11 +41,15 @@ body {
   @apply bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 font-nunito;
 }
 
+input, textarea {
+  @apply bg-neutral-100 dark:bg-[#111] text-neutral-800 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500;
+}
+
 h1 {
   @apply text-4xl font-medium tracking-tight mt-6 mb-2;
 }
 
-h2 {
+h2:not(:first-child) {
   @apply text-xl font-medium tracking-tight mt-6 mb-2;
 }
 
@@ -84,11 +69,8 @@ h6 {
   @apply text-lg font-medium tracking-tight mt-6 mb-2;
 }
 
-a:not(.anchor):not(.logo):not(.social a):not(.projetos) {
-  @apply 
-    text-blue-600 
-    dark:text-blue-400 
-    no-underline 
+a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn) {
+  @apply no-underline 
     decoration-neutral-400 
     dark:decoration-neutral-600 
     hover:underline
@@ -96,15 +78,11 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos) {
     underline-offset-2 
     decoration-[0.18em]
     duration-600
-    transition-all 
-    ;
-  // @apply relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right;
-  // @apply -bottom-1 right-0 w-0 transition-all h-0.5 bg-indigo-600 group-hover:w-full;
+    transition-all;
 }
 
 .prose .anchor {
   @apply absolute invisible no-underline;
-
   margin-left: -1em;
   padding-right: 0.5em;
   width: 80%;
@@ -116,7 +94,7 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos) {
   @apply visible;
 }
 
-.prose a {
+.prose a:not(.btn) {
   @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
 }
 
@@ -148,7 +126,6 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos) {
 }
 
 .prose img {
-  /* Don't apply styles to next/image */
   @apply m-0;
 }
 
@@ -185,8 +162,7 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos) {
 }
 
 .prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
+  margin-top: 0.25em !important;
   margin-bottom: 1.25em !important;
 }
 
@@ -195,11 +171,10 @@ pre::-webkit-scrollbar {
 }
 
 pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Remove Safari input shadow on mobile */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;

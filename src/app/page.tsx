@@ -29,6 +29,14 @@ export default function Home() {
           seguras.
         </p>
         <p>Vamos juntos construir soluções inovadoras e impactantes!</p>
+        <p>
+          <Link 
+            className="inline-block btn text-lg font-semibold p-3 rounded-md bg-blue-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500"
+            href="/contato"
+          >
+            Entre em Contato
+          </Link>
+        </p>
       </div>
       <YouTubeEmbed videoid="htgr3pvBr-I" height={400} params="rel=0&color=white" />
     </section>
