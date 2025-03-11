@@ -1,13 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { compileMDX } from 'next-mdx-remote/rsc'
-
-type Metadata = {
-  title: string
-  publishedAt: string
-  summary: string
-  image?: string
-}
+import { components } from '@/components/mdx'
 
 const contentDir = path.join(process.cwd(), '_posts')
 
@@ -15,6 +9,7 @@ export async function getBlogBySlug(slug: string) {
   const fileName = slug + '.mdx'
   const filePath = path.join(contentDir, fileName)
   const fileContent = fs.readFileSync(filePath, 'utf-8')
+
   const { frontmatter, content } = await compileMDX<{
     title: string
     author: string
@@ -23,7 +18,8 @@ export async function getBlogBySlug(slug: string) {
     image: string
   }>({
     source: fileContent,
-    options: { parseFrontmatter: true }
+    options: { parseFrontmatter: true },
+    components
   })
 
   return {
@@ -33,41 +29,41 @@ export async function getBlogBySlug(slug: string) {
   }
 }
 
-function parseFrontmatter(fileContent: string) {
-  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  const match = frontmatterRegex.exec(fileContent)
-  const frontMatterBlock = match![1]
-  const content = fileContent.replace(frontmatterRegex, '').trim()
-  const frontMatterLines = frontMatterBlock.trim().split('\n')
-  const metadata: Partial<Metadata> = {}
+// function parseFrontmatter(fileContent: string) {
+//   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
+//   const match = frontmatterRegex.exec(fileContent)
+//   const frontMatterBlock = match![1]
+//   const content = fileContent.replace(frontmatterRegex, '').trim()
+//   const frontMatterLines = frontMatterBlock.trim().split('\n')
+//   const metadata: Partial<Metadata> = {}
 
-  frontMatterLines.forEach((line) => {
-    const [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
-  })
+//   frontMatterLines.forEach((line) => {
+//     const [key, ...valueArr] = line.split(': ')
+//     let value = valueArr.join(': ').trim()
+//     value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+//     metadata[key.trim() as keyof Metadata] = value
+//   })
 
-  return { metadata: metadata as Metadata, content }
-}
+//   return { metadata: metadata as Metadata, content }
+// }
 
-export function getBlogPosts() {
-  const mdxFiles = fs.readdirSync(contentDir).filter((file) => path.extname(file) === '.mdx')
+// export function getBlogPosts() {
+//   const mdxFiles = fs.readdirSync(contentDir).filter((file) => path.extname(file) === '.mdx')
 
-  return mdxFiles.map((file) => {
-    const rawContent = fs.readFileSync(file, 'utf-8')
-    const { metadata, content } = parseFrontmatter(rawContent)
-    const slug = path.basename(file, path.extname(file))
+//   return mdxFiles.map((file) => {
+//     const rawContent = fs.readFileSync(file, 'utf-8')
+//     const { metadata, content } = parseFrontmatter(rawContent)
+//     const slug = path.basename(file, path.extname(file))
 
-    return {
-      metadata,
-      slug,
-      content,
-    }
-  })  
-}
+//     return {
+//       metadata,
+//       slug,
+//       content,
+//     }
+//   })  
+// }
 
-export async function getBlogs() {
+export async function getPosts() {
   const files = fs.readdirSync(contentDir)
   const blogs = await Promise.all(
     files.map(async (file) => await getBlogBySlug(path.parse(file).name))
@@ -75,7 +71,7 @@ export async function getBlogs() {
   return blogs
 }
 
-export function getAllBlogSlug() {
+export function getSlugs() {
   const files = fs.readdirSync(contentDir)
   const slugs = files.map((file) => ({ slug: path.parse(file).name }))
   return slugs

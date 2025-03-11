@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getBlogs, formatDate } from '@/app/posts/utils'
+import { getPosts, formatDate } from '@/app/posts/utils'
 import { metaData } from '@/config'
 import type { Metadata } from 'next'
 
@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const blogs = await getBlogs()
+  const posts = await getPosts()
 
   return (
     <section>
       <h2 className="text-xl font-medium tracking-tight">Blog</h2>
       <div>
-      {blogs
+      {posts
         .sort((a, b) => {
           if (
             new Date(a.frontmatter.publishDate) > new Date(b.frontmatter.publishDate)

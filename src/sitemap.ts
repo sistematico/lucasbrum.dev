@@ -1,14 +1,11 @@
-import { getBlogs } from '@/app/posts/utils'
+import { getPosts } from '@/app/posts/utils'
 import { baseUrl } from '@/config'
 import type { MetadataRoute } from 'next'
 
-// export const dynamic = 'force-static'
-
-// export default async function sitemap() {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const allBlogs = await getBlogs()
+  const posts = await getPosts()
 
-  const blogs = allBlogs.map((post) => ({
+  const blogs = posts.map((post) => ({
     url: `${baseUrl}/posts/${post.slug}`,
     lastModified: post.frontmatter.publishDate,
     priority: 1,

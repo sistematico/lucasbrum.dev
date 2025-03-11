@@ -1,33 +1,6 @@
-// import { getBlogBySlug, getAllBlogSlug } from '@/app/posts/utils'
-
-// export async function generateStaticParams() {
-//   return getAllBlogSlug()
-// }
-
-// export default async function BlogPage({
-//   params,
-// }: {
-//   params: Promise<{ slug: string }>
-// }) {
-//   const { slug } = await params
-//   const blog = await getBlogBySlug(slug)
-//   return (
-//     <main className="prose">
-//       <article>{blog.content}</article>
-//     </main>
-//   )
-// }
-
 import { notFound } from 'next/navigation'
-import { CustomMDX } from '@/components/mdx'
-// import { useMDXComponents } from '@/mdx-components'
-import { formatDate, getBlogBySlug, getAllBlogSlug } from '../utils'
-// import { baseUrl } from '../../sitemap'
-
-const baseUrl =
-  process.env.NODE_ENV === 'production'
-    ? 'https://lucasbrum.dev'
-    : 'http://localhost:3000'
+import { formatDate, getBlogBySlug, getSlugs } from '../utils'
+import { baseUrl } from '@/config'
 
 interface PageProps {
   params: Promise<{
@@ -36,7 +9,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getAllBlogSlug()
+  return getSlugs()
 }
 
 export async function generateMetadata({
@@ -85,11 +58,8 @@ export async function generateMetadata({
 }
 
 export default async function Blog({ params }: PageProps) {
-  // const post = (await getBlogPosts()).find((post) => post.slug === params.slug)
   const { slug } = await params
-  // const posts = await getBlogPosts();
   const post = await getBlogBySlug(slug)
-  // const post = posts.find((post) => post.slug === slug);
 
   if (!post) notFound()
 
@@ -126,8 +96,7 @@ export default async function Blog({ params }: PageProps) {
         </p>
       </div>
       <article className="prose">
-        <CustomMDX source={post} />
-        {/* {post.content} */}
+        {post.content}
       </article>
     </section>
   )
