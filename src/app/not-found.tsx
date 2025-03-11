@@ -12,7 +12,9 @@ export default function NotFound() {
     <div>
       <h2>Erro - 404</h2>
       <p>Página não encontrada</p>
-      <Link href="/">Voltar</Link>
+      <p>
+        <Link href="/" className="inline-block px-3 py-2 bg-indigo-600 rounded-md decoration-none">Voltar</Link>
+      </p>
     </div>
   )
 }

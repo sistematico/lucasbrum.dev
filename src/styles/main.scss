@@ -49,6 +49,10 @@ h1 {
   @apply text-4xl font-medium tracking-tight mt-6 mb-2;
 }
 
+h2 {
+  @apply text-xl font-medium tracking-tight;
+}
+
 h2:not(:first-child) {
   @apply text-xl font-medium tracking-tight mt-6 mb-2;
 }
@@ -69,8 +73,14 @@ h6 {
   @apply text-lg font-medium tracking-tight mt-6 mb-2;
 }
 
-a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn) {
+p {
+  @apply my-3 text-neutral-800 dark:text-neutral-400;
+}
+
+a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn):not(.inline-block) {
   @apply no-underline 
+    text-neutral-800 
+    dark:text-neutral-400
     decoration-neutral-400 
     dark:decoration-neutral-600 
     hover:underline
@@ -108,8 +118,8 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn) {
 }
 
 .prose pre {
-  // @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border-2 border-black dark:border-neutral-900 px-3 text-sm;
   @apply bg-[#111] p-5 rounded-md;
+  // @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border-2 border-black dark:border-neutral-900 px-3 text-sm;
   // line-height: .8em;
 }
 
