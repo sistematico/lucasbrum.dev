@@ -1,6 +1,6 @@
-import { metaData } from '@/config'
 import type { Metadata } from 'next'
 import { ContactForm } from '@/components/email/form'
+import { metaData } from '@/config'
 
 export const metadata: Metadata = {
   title: `${metaData.title} - Contato`,

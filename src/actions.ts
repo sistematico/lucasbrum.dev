@@ -10,17 +10,30 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-export async function sendEmail(formData: FormData) {
-  const email = formData.get('email') as string
-  const message = formData.get('message') as string
+// export async function sendEmail(formData: FormData) {
+// Define a proper return type
+type EmailResponseState = {
+  message: string;
+  error?: unknown;
+}
 
+// Modify the function to match the expected signature for useActionState
+export async function sendEmail(
+  state: EmailResponseState | null,
+  formData: FormData
+): Promise<EmailResponseState> {
+
+  const name = formData.get('name') as string
+  const email = formData.get('email') as string
+  const subject = formData.get('subject') as string
+  const message = formData.get('message') as string
   // const message = `E-mail from ${name} (${email}) \n\n ${text}`
 
   try {
     const mail = await transporter.sendMail({
-      from: process.env.GMAIL_ADDR,
-      to: email,
-      // subject,
+      from: `${name} <${email}>`,
+      to: process.env.GMAIL_ADDR,
+      subject,
       text: message,
       html: message
     })
