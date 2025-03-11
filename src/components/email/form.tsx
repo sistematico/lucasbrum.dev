@@ -1,7 +1,6 @@
 'use client'
 
-//import { useActionState, useEffect } from "react"
-import { useFormState } from "react-dom"
+import { useActionState } from 'react'
 import { SubmitButton } from '@/components/email/button'
 import { sendEmail } from '@/actions'
 
@@ -13,7 +12,7 @@ const initialState = {
 }
 
 export function ContactForm() {
-  const [state, action] = useFormState(sendEmail, initialState)
+  const [state, action] = useActionState(sendEmail, initialState)
   // const [state, action, pending] = useActionState(sendEmail, initialState)
 
 

@@ -87,10 +87,10 @@ export default async function Blog({ params }: PageProps) {
           })
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h2 className="title font-semibold text-xl tracking-tighter">
         {post.frontmatter.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+      </h2>
+      <div className="flex justify-between items-center -mt-2 mb-5 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.frontmatter.publishDate)}
         </p>
