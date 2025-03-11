@@ -10,8 +10,6 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-// export async function sendEmail(formData: FormData) {
-// Define a proper return type
 type EmailResponseState = {
   message: string;
   error?: unknown;
@@ -27,11 +25,10 @@ export async function sendEmail(
   const email = formData.get('email') as string
   const subject = formData.get('subject') as string
   const message = formData.get('message') as string
-  // const message = `E-mail from ${name} (${email}) \n\n ${text}`
 
   try {
     const mail = await transporter.sendMail({
-      from: `${name} <${email}>`,
+      from: `"${name}" <${email}>`,
       to: process.env.GMAIL_ADDR,
       subject,
       text: message,
@@ -42,24 +39,6 @@ export async function sendEmail(
   } catch (error) {
     return { message: 'Something Went Wrong', error }
   }
-
-  // if (!email || !message) {
-  //   return { error: "All fields are required" }
-  // }
-
-  // if (!process.env.RESEND_TO_EMAIL_ADDRESS) {
-  //  return { error: "Missing environment variable: RESEND_TO_EMAIL_ADDRESS" }
-  // }
-
-  // const data = await resend.emails.send({
-  //   from: "Acme <onboarding@resend.dev>",
-  //   to: process.env.RESEND_TO_EMAIL_ADDRESS,
-  //   subject: "New Contact Form Submission",
-  //   text: `
-  //     Email: ${email}
-  //     Message: ${message}
-  //   `,
-  // })
 
   //   return { success: "Email sent successfully", data }
   // } catch (error) {

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { formatDate, getBlogBySlug, getSlugs } from '../utils'
-import { baseUrl } from '@/config'
+import { baseUrl, metaData } from '@/config'
 
 interface PageProps {
   params: Promise<{
@@ -83,7 +83,7 @@ export default async function Blog({ params }: PageProps) {
             url: `${baseUrl}/posts/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio'
+              name: metaData.name
             }
           })
         }}
@@ -96,17 +96,6 @@ export default async function Blog({ params }: PageProps) {
           {formatDate(post.frontmatter.publishDate)}
         </p>
       </div>      
-      {post.frontmatter.image && post.frontmatter.image !== '' &&
-        <Image
-          src={post.frontmatter.image}
-          alt={post.frontmatter.title}
-          className="mx-auto sm:relative sm:float-right"
-          unoptimized
-          width={160}
-          height={160}
-          priority
-        />
-      }
       <article className="prose">
         {post.content}
       </article>
