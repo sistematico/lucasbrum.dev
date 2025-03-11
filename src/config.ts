@@ -1,12 +1,14 @@
-export const baseUrl = process.env.NODE_ENV === 'production' ? 'https://lucasbrum.dev' : 'http://localhost:3000'
+export const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://lucasbrum.dev'
+    : 'http://localhost:3000'
 
 export const metaData = {
   baseUrl,
   title: 'Lucas Brum',
   name: 'Lucas Saliés Brum',
   ogImage: '/images/avatar.jpg',
-  description:
-    'Desenvolvedor web desde 1999 usando TypeScript e com vasta experiência em Linux.'
+  description: 'Desenvolvedor web desde 1999, TypeScript, React, Next.js, Linux'
 }
 
 export const socialLinks = {

@@ -1,13 +1,6 @@
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { formatDate, getBlogBySlug, getSlugs } from '../utils'
 import { baseUrl, metaData } from '@/config'
-
-interface PageProps {
-  params: Promise<{
-    slug: string
-  }>
-}
 
 export async function generateStaticParams() {
   return getSlugs()
@@ -32,7 +25,7 @@ export async function generateMetadata({
   } = post.frontmatter
   const ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+    : `${baseUrl}/images/avatar.jpg?title=${encodeURIComponent(title)}`
 
   return {
     title,
@@ -58,7 +51,13 @@ export async function generateMetadata({
   }
 }
 
-export default async function Blog({ params }: PageProps) {
+export default async function Blog({
+  params
+}: {
+  params: Promise<{
+    slug: string
+  }>
+}) {
   const { slug } = await params
   const post = await getBlogBySlug(slug)
 
@@ -95,10 +94,8 @@ export default async function Blog({ params }: PageProps) {
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.frontmatter.publishDate)}
         </p>
-      </div>      
-      <article className="prose">
-        {post.content}
-      </article>
+      </div>
+      <article className="prose">{post.content}</article>
     </section>
   )
 }
