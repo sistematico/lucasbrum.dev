@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { formatDate, getBlogBySlug, getSlugs } from '../utils'
 import { baseUrl } from '@/config'
@@ -94,7 +95,18 @@ export default async function Blog({ params }: PageProps) {
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.frontmatter.publishDate)}
         </p>
-      </div>
+      </div>      
+      {post.frontmatter.image && post.frontmatter.image !== '' &&
+        <Image
+          src={post.frontmatter.image}
+          alt={post.frontmatter.title}
+          className="mx-auto sm:relative sm:float-right"
+          unoptimized
+          width={160}
+          height={160}
+          priority
+        />
+      }
       <article className="prose">
         {post.content}
       </article>

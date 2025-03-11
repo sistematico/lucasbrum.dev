@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { projects } from './data'
 import { metaData } from '@/config'
 import { Card } from '@/components/card'
@@ -14,11 +15,16 @@ export default function Projects() {
       <h2 className="text-xl font-medium tracking-tight">Projetos</h2>
       <div>
         {projects.map((project, index) => (
-          <Card
+          <Link
+            href={project.url}
+            target='_blank'
             key={index}
-            title={project.title}
-            description={project.description}
-          />
+           >
+            <Card
+              title={project.title}
+              description={project.description}
+            />
+          </Link>
         ))}
       </div>
     </section>

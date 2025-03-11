@@ -196,10 +196,10 @@ table {
 }
 
 .image-logo {
-  filter: blur(5px) sepia(100%);
-  transition: filter 600ms ease-in-out;
+  filter: blur(.10em) grayscale(100%);
+  transition: filter 800ms ease-in-out;
 }
 
 .image-logo:hover {
-  filter: blur(0) sepia(0%);
+  filter: blur(0) grayscale(0%);
 }
