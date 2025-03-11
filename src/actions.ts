@@ -13,14 +13,13 @@ const transporter = nodemailer.createTransport({
 type EmailResponseState = {
   message: string;
   error?: unknown;
+  ok?: boolean;
 }
 
-// Modify the function to match the expected signature for useActionState
 export async function sendEmail(
   state: EmailResponseState | null,
   formData: FormData
 ): Promise<EmailResponseState> {
-
   const name = formData.get('name') as string
   const email = formData.get('email') as string
   const subject = formData.get('subject') as string
@@ -35,13 +34,8 @@ export async function sendEmail(
       html: message
     })
 
-    return { message: `Message Sent ${mail.messageId}` }
+    return { message: `Message Sent ${mail.messageId}`, ok: true }
   } catch (error) {
-    return { message: 'Something Went Wrong', error }
+    return { message: 'Something Went Wrong', error, ok: false }
   }
-
-  //   return { success: "Email sent successfully", data }
-  // } catch (error) {
-  //   return { error: error?.message || "Failed to send email" }
-  // }
 }
