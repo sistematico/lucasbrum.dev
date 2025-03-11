@@ -13,6 +13,9 @@ const initialState = {
 
 export function ContactForm() {
   const [state, action] = useActionState(sendEmail, initialState)
+
+  console.log(state)
+
   // const [state, action, pending] = useActionState(sendEmail, initialState)
 
 
