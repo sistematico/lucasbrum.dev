@@ -15,27 +15,54 @@ const initialState = {
 export function ContactForm() {
   const [state, action] = useActionState(sendEmail, initialState)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [showNewMessageButton, setShowNewMessageButton] = useState(false)
+
+  // useEffect(() => {
+  //   if (state && state.ok) setIsSubmitted(true)
+  // }, [state])
 
   useEffect(() => {
-    if (state && state.message && state.message.startsWith('Message Sent')) {
+    if (state && state.ok) {
       setIsSubmitted(true)
+      
+      // Adiciona um delay de 5 segundos antes de mostrar o botão de nova mensagem
+      const timer = setTimeout(() => {
+        setShowNewMessageButton(true)
+      }, 5000)
+      
+      // Limpeza do timer quando o componente for desmontado
+      return () => clearTimeout(timer)
     }
   }, [state])
 
-  if (isSubmitted) {
+  if (isSubmitted) {    
     return (
-      <div className="flex flex-col items-center justify-center p-8 space-y-4 bg-[#111] rounded-xl text-center">
+      <div className="flex flex-col items-center justify-center p-6 space-y-3 bg-[#111] rounded-xl text-center">
         <CheckCircle className="w-16 h-16 text-green-500" />
-        <h3 className="text-2xl font-medium text-white">Mensagem Enviada!</h3>
+        <h3 className="text-2xl font-medium text-white py-0">Mensagem Enviada!</h3>
         <p className="text-gray-400">
           Obrigado por entrar em contato. Retornarei o mais breve possível.
         </p>
-        <button
-          onClick={() => setIsSubmitted(false)}
-          className="mt-4 bg-[#cbcbcb] dark:bg-[#222] dark:hover:bg-[#333] hover:bg-gray-300 text-[#111] dark:text-white px-6 py-3 rounded-md font-medium transition-all duration-300 ease-in-out"
-        >
-          Enviar nova mensagem
-        </button>
+
+        {showNewMessageButton && (
+          // <button
+          //   onClick={() => {
+          //     setIsSubmitted(false)
+          //     setShowNewMessageButton(false)
+          //   }}
+          //   className="mt-4 bg-[#cbcbcb] dark:bg-[#222] dark:hover:bg-[#333] hover:bg-gray-300 text-[#111] dark:text-white px-6 py-3 rounded-md font-medium transition-all duration-300 ease-in-out"
+          // >
+          //   Enviar nova mensagem
+          // </button>
+
+          <button
+            onClick={() => setIsSubmitted(false)}
+            className="mt-4 bg-[#cbcbcb] dark:bg-[#222] dark:hover:bg-[#333] hover:bg-gray-300 text-[#111] dark:text-white px-6 py-3 rounded-md font-medium transition-all duration-300 ease-in-out"
+          >
+            Enviar nova mensagem
+          </button>
+        )}
+
       </div>
     )
   }

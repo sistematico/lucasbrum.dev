@@ -2,7 +2,19 @@ import { YouTubeEmbed } from '@next/third-parties/google'
 import Link from 'next/link'
 import Image from 'next/image'
 
+const videos = ['htgr3pvBr-I', 'XEjLoHdbVeE']
+
+export function generateMetadata() {
+  return {
+    other: {
+      'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate'
+    }
+  }
+}
+
 export default function Home() {
+  const video = videos[Math.floor(Math.random() * videos.length)]
+
   return (
     <section>
       <Link href="/">
@@ -37,7 +49,7 @@ export default function Home() {
           </Link>
         </p>
       </div>
-      <YouTubeEmbed videoid="htgr3pvBr-I" height={400} params="rel=0&color=white" />
+      <YouTubeEmbed videoid={video} height={400} params="rel=0&color=white" />
     </section>
   )
 }
