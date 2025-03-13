@@ -12,13 +12,14 @@ export const metadata: Metadata = {
 export default function Projects() {
   return (
     <section>
-      <h2 className="text-xl font-medium tracking-tight">Projetos</h2>
+      <h2 className="text-xl font-medium tracking-tight mb-2">Projetos</h2>
       <div>
         {projects.map((project, index) => (
           <Link
             href={project.url}
             target='_blank'
             key={index}
+            className="hover:underline-0 hover:decoration-0"
            >
             <Card
               title={project.title}

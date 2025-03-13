@@ -1,3 +1,6 @@
+import { Suspense } from 'react'
+import { RandomVideo } from '@/components/video'
+import { YoutubeSkeleton } from '@/components/skeletons/youtube'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Nunito, Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
@@ -51,6 +54,10 @@ export default function RootLayout({
           <main className="flex flex-col flex-auto min-w-0 max-w-[640px] w-full space-y-5 my-10 mx-5 md:mx-0">
             <Navbar />
             {children}
+            <Suspense fallback={<YoutubeSkeleton className="h-[400px]" />}>
+        <RandomVideo />
+      </Suspense>
+
             <Footer />
           </main>
         </Providers>

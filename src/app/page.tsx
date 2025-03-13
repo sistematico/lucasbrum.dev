@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { RandomVideo } from '@/components/video'
-import { YoutubeSkeleton } from '@/components/skeletons/youtube'
 
 export default function Home() {
   return (
@@ -39,16 +36,9 @@ export default function Home() {
           </Link>
         </p>
       </div>
-
       {/* <Suspense fallback={<div className="h-[400px] bg-gray-100 animate-pulse"></div>}>
         <RandomVideo />
       </Suspense> */}
-
-      <Suspense fallback={<YoutubeSkeleton className="h-[400px]" />}>
-        <RandomVideo />
-      </Suspense>
-
-
     </section>
   )
 }

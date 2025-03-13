@@ -14,10 +14,10 @@ export default function BookmarksPage() {
 
   return (
     <section>
-      <h1>Favoritos</h1>
+      <h2 className="text-xl font-medium tracking-tight">Favoritos</h2>
       {sortedCategories.map(category => (
         <div key={category}>
-          <h2 className="mt-2 mb-3">{category}</h2>
+          <h3 className="font-medium tracking-tight mt-5 mb-1">{category}</h3>
           <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
             {bookmarksByCategory[category]
               .sort((a, b) => a.name.localeCompare(b.name)) // Ordenar os bookmarks dentro da categoria

@@ -28,23 +28,19 @@ export default async function BlogPage() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col"
             href={`/posts/${post.slug}`}
           >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 dark:text-neutral-400 w-[160px] tabular-nums">
-                {formatDate(post.frontmatter.publishDate, false)}
-              </p>
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                {post.frontmatter.title}
-              </p>
-            </div>
+              <div className="flex py-2">
+                <div className="w-42 flex-none text-neutral-600 dark:text-neutral-400">
+                  {formatDate(post.frontmatter.publishDate, false)}
+                </div>
+                <div className="ml-2 text-neutral-900 dark:text-neutral-100 tracking-tight">
+                  {post.frontmatter.title}
+                </div>
+              </div>
           </Link>
         ))}
         </div> 
-
-
-
     </section>
   )
 }

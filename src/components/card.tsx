@@ -10,7 +10,7 @@ export function Card({
   image?: string
 }) {
   return (
-    <div className="mx-auto w-full rounded-md border border-black p-4">
+    <div className="mx-auto w-full rounded-md border border-foreground p-4">
       <div className="flex space-x-4">
         {image
           ? <Image src={image} alt={title} width={50} height={50} className="rounded-full border-2 border-gray-200" />

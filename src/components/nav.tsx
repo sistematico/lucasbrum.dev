@@ -23,7 +23,7 @@ export function Navbar() {
             {metaData.title}
           </Link>
         </div>
-        <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">
+        <div className="flex flex-row flex-wrap gap-4 mt-6 md:mt-0 md:ml-auto justify-center items-center">
           {Object.entries(navItems).map(([path, { name }]) => (
             <Link
               key={path}
