@@ -119,23 +119,7 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn):not(.inline-bl
 
 .prose pre {
   @apply bg-[#111] p-5 rounded-md;
-  // @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border-2 border-black dark:border-neutral-900 px-3 text-sm;
-  // line-height: .8em;
 }
-
-// .prose code {
-//   @apply px-1 py-0.5 rounded-lg;
-// }
-
-// .prose pre code {
-//   @apply p-0;
-//   // border: initial;
-//   line-height: .5;
-// }
-
-// .prose code span {
-//   @apply font-medium;
-// }
 
 .prose img {
   @apply m-0;
@@ -212,4 +196,13 @@ table {
 
 .image-logo:hover {
   filter: blur(0) grayscale(0%);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }
