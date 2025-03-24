@@ -20,20 +20,22 @@ export function Navbar() {
 
   return (
     <nav className="w-full">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-wrap items-center justify-between">
         {/* Logo/título do site */}
-        <div className="flex justify-center md:justify-start mb-4 md:mb-0">
+        <div className="flex mr-4">
           <Link href="/" className="logo text-3xl font-semibold tracking-tight whitespace-nowrap">
             {site.title}
           </Link>
         </div>
-        <div className="flex items-center justify-center md:justify-end gap-x-4 gap-y-2 px-2 flex-wrap">
+        
+        {/* Menu de navegação */}
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-2 py-2">
           {Object.entries(navItems).map(([path, { name, icon: Icon, color }]) => (
             <Link
               key={path}
               href={path}
               className={`
-                nav-item relative py-1 px-2
+                nav-item relative text-sm py-1 px-1
                 flex items-center gap-1.5
                 text-neutral-800 dark:text-neutral-300 
                 hover:text-neutral-900 dark:hover:text-neutral-100
@@ -46,7 +48,9 @@ export function Navbar() {
               <span>{name}</span>
             </Link>
           ))}
-          <div className="flex-none py-1 px-2">
+          
+          {/* Theme switcher como um item de menu */}
+          <div className="py-1 px-1 cursor-pointer">
             <ThemeSwitch />
           </div>
         </div>
