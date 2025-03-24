@@ -2,46 +2,52 @@
 
 import Link from 'next/link'
 import { ThemeSwitch } from '@/components/theme'
-import { metaData } from '@/config'
+import { site } from '@/config'
 import { usePathname } from 'next/navigation'
+import { Home, BookOpen, Briefcase, Heart, MailPlus } from 'lucide-react'
 
+// Objeto com informações dos itens de navegação
 const navItems = {
-  '/posts': { name: 'Blog' },
-  '/projetos': { name: 'Projetos' },
-  '/favoritos': { name: 'Favoritos' },
-  '/contato': { name: 'Contato' }
+  '/': { name: 'Home', icon: Home, color: 'blue-500' },
+  '/posts': { name: 'Blog', icon: BookOpen, color: 'green-500' },
+  '/projetos': { name: 'Projetos', icon: Briefcase, color: 'purple-500' },
+  '/favoritos': { name: 'Favoritos', icon: Heart, color: 'red-500' },
+  '/contato': { name: 'Contato', icon: MailPlus, color: 'amber-500' }
 }
 
 export function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav>
-      <div className="flex flex-col md:flex-row md:items-center justify-between">
-        <div className="flex items-center">
-          <Link href="/" className="logo text-3xl font-semibold tracking-tight">
-            {metaData.title}
+    <nav className="w-full">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        {/* Logo/título do site */}
+        <div className="flex justify-center md:justify-start mb-4 md:mb-0">
+          <Link href="/" className="logo text-3xl font-semibold tracking-tight whitespace-nowrap">
+            {site.title}
           </Link>
         </div>
-        {/* Aplicando um container com overflow para rolagem horizontal */}
-        <div className="overflow-x-auto scrollbar-hide mt-6 md:mt-0 md:ml-auto">
-          <div className="flex flex-row flex-nowrap gap-4 justify-start items-center min-w-max px-0.5 py-1">
-            {Object.entries(navItems).map(([path, { name }]) => (
-              <Link
-                key={path}
-                href={path}
-                className={
-                  pathname === path
-                    ? 'transition-all whitespace-nowrap text-blue-600 hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative'
-                    : 'transition-all whitespace-nowrap text-black dark:text-white hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative'
-                }
-              >
-                {name}
-              </Link>
-            ))}
-            <div className="flex-shrink-0">
-              <ThemeSwitch />
-            </div>
+        <div className="flex items-center justify-center md:justify-end gap-x-4 gap-y-2 px-2 flex-wrap">
+          {Object.entries(navItems).map(([path, { name, icon: Icon, color }]) => (
+            <Link
+              key={path}
+              href={path}
+              className={`
+                nav-item relative py-1 px-2
+                flex items-center gap-1.5
+                text-neutral-800 dark:text-neutral-300 
+                hover:text-neutral-900 dark:hover:text-neutral-100
+                transition-colors duration-300
+                nav-item-${color}
+                ${pathname === path ? 'is-active' : ''}
+              `}
+            >
+              {Icon && <Icon size={18} className="inline-block" />}
+              <span>{name}</span>
+            </Link>
+          ))}
+          <div className="flex-none py-1 px-2">
+            <ThemeSwitch />
           </div>
         </div>
       </div>

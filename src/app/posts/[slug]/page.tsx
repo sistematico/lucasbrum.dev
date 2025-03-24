@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { formatDate, getBlogBySlug, getSlugs } from '../utils'
-import { baseUrl, metaData } from '@/config'
+import { url, site } from '@/config'
 
 export async function generateStaticParams() {
   return getSlugs()
@@ -25,7 +25,7 @@ export async function generateMetadata({
   } = post.frontmatter
   const ogImage = image
     ? image
-    : `${baseUrl}/images/avatar.jpg?title=${encodeURIComponent(title)}`
+    : `${site.url}/images/avatar.jpg?title=${encodeURIComponent(title)}`
 
   return {
     title,
@@ -35,7 +35,7 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `${baseUrl}/posts/${post.slug}`,
+      url: `${site.url}/posts/${post.slug}`,
       images: [
         {
           url: ogImage
@@ -77,12 +77,12 @@ export default async function Blog({
             dateModified: post.frontmatter.publishDate,
             description: post.frontmatter.summary,
             image: post.frontmatter.image
-              ? `${baseUrl}${post.frontmatter.image}`
+              ? `${site.url}${post.frontmatter.image}`
               : `/og?title=${encodeURIComponent(post.frontmatter.title)}`,
-            url: `${baseUrl}/posts/${post.slug}`,
+            url: `${site.url}/posts/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: metaData.name
+              name: site.name
             }
           })
         }}

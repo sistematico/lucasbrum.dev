@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { metaData } from '@/config'
+import { site } from '@/config'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: `${metaData.title} - 404`,
+  title: `${site.title} - 404`,
   description: 'Página não encontrada'
 }
 

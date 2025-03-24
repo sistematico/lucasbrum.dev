@@ -1,12 +1,7 @@
-@use 'tailwindcss';
+@use "tailwindcss";
+@use "theme";
 
 @custom-variant dark (&:where(.dark, .dark *));
-
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-nunito: var(--font-nunito);
-}
 
 ::selection {
   background-color: #47a3f3;
@@ -25,16 +20,84 @@
   --sh-entity: #e25a1c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
+:is(.dark) {
+  --sh-class: #4c97f8;
+  --sh-identifier: #c9d1d9;
+  --sh-sign: #8996a3;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
+  --sh-comment: #8b949e;
+  --sh-jsxliterals: #a5a3ff;
+  --sh-property: #ff967d;
+  --sh-entity: #ff967d;
+}
+
+// Navbar
+/* Estilos para os itens de navegação */
+// .nav-item {
+//   position: relative;
+  
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     bottom: -2px;
+//     left: 0;
+//     width: 0;
+//     height: 4px;
+//     transition: width 0.3s ease;
+//   }
+  
+//   &:hover::after {
+//     width: 100%;
+//   }
+  
+//   &.is-active::after {
+//     width: 100%;
+//   }
+// }
+
+.nav-item {
+  position: relative;
+  min-width: fit-content;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s ease;
   }
-  html {
-    color-scheme: dark;
+  
+  &:hover::after {
+    width: 100%;
   }
+  
+  &.is-active::after {
+    width: 100%;
+  }
+}
+
+/* Cores para cada item */
+.nav-item-blue-500::after {
+  background-color: #3b82f6;
+}
+
+.nav-item-green-500::after {
+  background-color: #22c55e;
+}
+
+.nav-item-purple-500::after {
+  background-color: #a855f7;
+}
+
+.nav-item-red-500::after {
+  background-color: #ef4444;
+}
+
+.nav-item-amber-500::after {
+  background-color: #f59e0b;
 }
 
 body {
@@ -77,19 +140,19 @@ p {
   @apply my-3 text-neutral-800 dark:text-neutral-400;
 }
 
-a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn):not(.inline-block) {
-  @apply no-underline 
-    text-neutral-800 
-    dark:text-neutral-400
-    decoration-neutral-400 
-    dark:decoration-neutral-600 
-    hover:underline
-    hover:decoration-indigo-500
-    underline-offset-2 
-    decoration-[0.18em]
-    duration-600
-    transition-all;
-}
+// a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn):not(.inline-block) {
+//   @apply no-underline 
+//     text-neutral-800 
+//     dark:text-neutral-400
+//     decoration-neutral-400 
+//     dark:decoration-neutral-600 
+//     hover:underline
+//     hover:decoration-indigo-500
+//     underline-offset-2 
+//     decoration-[0.18em]
+//     duration-600
+//     transition-all;
+// }
 
 .prose .anchor {
   @apply absolute invisible no-underline;
@@ -118,7 +181,7 @@ a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn):not(.inline-bl
 }
 
 .prose pre {
-  @apply bg-[#111] p-5 rounded-md;
+  @apply bg-neutral-100 dark:bg-[#111] p-4 rounded-md mb-3;
 }
 
 .prose img {

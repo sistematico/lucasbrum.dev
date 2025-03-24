@@ -1,12 +1,12 @@
 import { Suspense } from 'react'
 import { RandomVideo } from '@/components/video'
-import { YoutubeSkeleton } from '@/components/skeletons/youtube'
+import { YoutubeVideo, YoutubeSkeleton } from '@/components/youtube'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Nunito, Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
-import { metaData } from '@/config'
+import { site } from '@/config'
 import type { Metadata } from 'next'
 import '@/styles/main.scss'
 
@@ -26,18 +26,17 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: metaData.title,
-  description: metaData.description,
-  icons: metaData.ogImage,
+  title: site.title,
+  description: site.description,
+  icons: site.ogImage,
   openGraph: {
-    type: "website",
-    url: metaData.baseUrl,
-    title: metaData.title,
-    description: metaData.description,
-    siteName: metaData.title,
-    images: [{ url: `${metaData.baseUrl}${metaData.ogImage}` }]
-  },
-  
+    type: 'website',
+    url: site.url,
+    title: site.title,
+    description: site.description,
+    siteName: site.title,
+    images: [{ url: `${site.url}${site.ogImage}` }]
+  }
 }
 
 export default function RootLayout({
@@ -51,13 +50,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
-          <main className="flex flex-col flex-auto min-w-0 max-w-[640px] w-full space-y-5 my-10 mx-5 md:mx-0">
+          <main className="flex flex-col flex-auto min-w-0 max-w-[720px] w-full space-y-5 my-10 mx-3 md:mx-0">
             <Navbar />
-            {children}
+            <div className="page-content">{children}</div>
             <Suspense fallback={<YoutubeSkeleton className="h-[400px]" />}>
-        <RandomVideo />
-      </Suspense>
-
+              <YoutubeVideo />
+            </Suspense>
             <Footer />
           </main>
         </Providers>

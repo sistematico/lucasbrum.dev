@@ -1,0 +1,77 @@
+@use "tailwindcss";
+
+@theme {
+  // monokai
+  --color-monokai-dark: #272822;
+  --color-monokai-fg: #f8f8f2;
+  --color-monokai-bg: #49483e;
+  --color-monokai-border: #fff3;
+  --color-monokai-comment: #75715e;
+  --color-monokai-yellow: #e6db74;
+  --color-monokai-orange: #fd971f;
+  --color-monokai-red: #f92672;
+  --color-monokai-magenta: #ae81ff;
+  --color-monokai-blue: #66d9ef;
+  --color-monokai-cyan: #a1efe4;
+  --color-monokai-green: #a6e22e;
+
+  // sonokai
+  --color-sonokai-black: #1f1e1c;
+  --color-sonokai-dark: #242120;
+  --color-sonokai-fg: #e4e3e1;
+  --color-sonokai-bg: #312c2b;
+  --color-sonokai-border: #fff3;
+  --color-sonokai-bg_dim: #242120;
+  --color-sonokai-bg0: #312c2b;
+  --color-sonokai-bg1: #393230;
+  --color-sonokai-comment: #75715e;
+  --color-sonokai-yellow: #f0c66f;
+  --color-sonokai-orange: #f08d71;
+  --color-sonokai-red: #f92672;
+  --color-sonokai-magenta: #9fa0e1;
+  --color-sonokai-blue: #81d0c9;
+  --color-sonokai-cyan: #a1efe4;
+  --color-sonokai-green: #a6cd77;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  // Monokai
+  --monokai-dark: var(--color-monokai-dark);
+  --monokai-fg: var(--color-monokai-fg);
+  --monokai-bg: var(--color-monokai-bg);
+  --monokai-border: var(--color-monokai-border);
+  --monokai-comment: var(--color-monokai-comment);
+  --monokai-yellow: var(--color-monokai-yellow);
+  --monokai-orange: var(--color-monokai-orange);
+  --monokai-red: var(--color-monokai-red);
+  --monokai-magenta: var(--color-monokai-magenta);
+  --monokai-blue: var(--color-monokai-blue);
+  --monokai-cyan: var(--color-monokai-cyan);
+  --monokai-green: var(--color-monokai-green);
+  
+  // Sonokai
+  --sonokai-black: var(--color-sonokai-black);
+  --sonokai-dark: var(--color-sonokai-dark);
+  --sonokai-fg: var(--color-sonokai-fg);
+  --sonokai-bg: var(--color-sonokai-bg);
+  --sonokai-border: var(--color-sonokai-border);
+  --sonokai-bg_dim: var(--color-sonokai-bg_dim);
+  --sonokai-bg0: var(--color-sonokai-bg0);
+  --sonokai-bg1: var(--color-sonokai-bg1);
+  --sonokai-comment: var(--color-sonokai-comment);
+  --sonokai-yellow: var(--color-sonokai-yellow);
+  --sonokai-orange: var(--color-sonokai-orange);
+  --sonokai-red: var(--color-sonokai-red);
+  --sonokai-magenta: var(--color-sonokai-magenta);
+  --sonokai-blue: var(--color-sonokai-blue);
+  --sonokai-cyan: var(--color-sonokai-cyan);
+  --sonokai-green: var(--color-sonokai-green);
+  
+  // Fontes
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-nunito: var(--font-nunito-sans);
+}
