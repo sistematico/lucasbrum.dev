@@ -9,11 +9,12 @@ const YEAR = new Date().getFullYear()
 interface SocialLinkProps {
   href: string
   icon: React.ComponentType
+  className?: string
 }
 
-function SocialLink({ href, icon: Icon }: SocialLinkProps) {
+function SocialLink({ href, icon: Icon, className }: SocialLinkProps) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
       <Icon />
     </a>
   )
@@ -21,13 +22,13 @@ function SocialLink({ href, icon: Icon }: SocialLinkProps) {
 
 function SocialLinks() {
   return (
-    <div className="social flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
-      <SocialLink href={social.twitter} icon={FaXTwitter} />
-      <SocialLink href={social.github} icon={FaGithub} />
-      <SocialLink href={social.instagram} icon={FaInstagram} />
-      <SocialLink href={social.linkedin} icon={FaLinkedinIn} />
-      <SocialLink href={social.email} icon={TbMailFilled} />
-      <a href="/sitemap.xml" target="_self">
+    <div className="social flex text-lg gap-3.5 float-right">
+      <SocialLink href={social.twitter} icon={FaXTwitter} className="x" />
+      <SocialLink href={social.github} icon={FaGithub} className="github" />
+      <SocialLink href={social.instagram} icon={FaInstagram} className="instagram" />
+      <SocialLink href={social.linkedin} icon={FaLinkedinIn} className="linkedin" />
+      <SocialLink href={social.email} icon={TbMailFilled} className="email" />
+      <a href="/sitemap.xml" target="_self" className="rss">
         <FaRss />
       </a>
     </div>

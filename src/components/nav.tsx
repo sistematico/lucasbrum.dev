@@ -4,12 +4,13 @@ import Link from 'next/link'
 import { ThemeSwitch } from '@/components/theme'
 import { site } from '@/config'
 import { usePathname } from 'next/navigation'
-import { Home, BookOpen, Briefcase, Heart, MailPlus } from 'lucide-react'
+import { Home, BookOpen, Briefcase, Heart, MailPlus, Scroll } from 'lucide-react'
 
 // Objeto com informações dos itens de navegação
 const navItems = {
   '/': { name: 'Home', icon: Home, color: 'blue-500' },
   '/posts': { name: 'Blog', icon: BookOpen, color: 'green-500' },
+  '/snippets': { name: 'Snippets', icon: Scroll, color: 'cyan-500' },
   '/projetos': { name: 'Projetos', icon: Briefcase, color: 'purple-500' },
   '/favoritos': { name: 'Favoritos', icon: Heart, color: 'red-500' },
   '/contato': { name: 'Contato', icon: MailPlus, color: 'amber-500' }

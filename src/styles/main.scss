@@ -9,6 +9,7 @@
 }
 
 :root {
+  --foreground: #fefefe;
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -21,6 +22,7 @@
 }
 
 :is(.dark) {
+  --foreground: #ffffff;
   --sh-class: #4c97f8;
   --sh-identifier: #c9d1d9;
   --sh-sign: #8996a3;
@@ -33,30 +35,7 @@
 }
 
 // Navbar
-/* Estilos para os itens de navegação */
-// .nav-item {
-//   position: relative;
-  
-//   &::after {
-//     content: '';
-//     position: absolute;
-//     bottom: -2px;
-//     left: 0;
-//     width: 0;
-//     height: 4px;
-//     transition: width 0.3s ease;
-//   }
-  
-//   &:hover::after {
-//     width: 100%;
-//   }
-  
-//   &.is-active::after {
-//     width: 100%;
-//   }
-// }
-
-.nav-item {
+a {
   position: relative;
   min-width: fit-content;
   
@@ -80,7 +59,15 @@
   }
 }
 
-/* Cores para cada item */
+a:not(.btn):not(.nav-item):not(.social a) {
+  @apply text-neutral-800 dark:text-neutral-200 transition-all duration-300 ease-in-out;
+}
+
+a:not(.btn):not(.nav-item):not(.social a)::after {
+  background-color: #3b82f6;
+}
+
+// Cores para cada item
 .nav-item-blue-500::after {
   background-color: #3b82f6;
 }
@@ -99,6 +86,14 @@
 
 .nav-item-amber-500::after {
   background-color: #f59e0b;
+}
+
+.nav-item-amber-500::after {
+  background-color: #f59e0b;
+}
+
+.nav-item-cyan-500::after {
+  background-color: #0bdef5;
 }
 
 body {
@@ -141,20 +136,6 @@ p {
   @apply my-3 text-neutral-800 dark:text-neutral-400;
 }
 
-// a:not(.anchor):not(.logo):not(.social a):not(.projetos):not(.btn):not(.inline-block) {
-//   @apply no-underline 
-//     text-neutral-800 
-//     dark:text-neutral-400
-//     decoration-neutral-400 
-//     dark:decoration-neutral-600 
-//     hover:underline
-//     hover:decoration-indigo-500
-//     underline-offset-2 
-//     decoration-[0.18em]
-//     duration-600
-//     transition-all;
-// }
-
 .prose .anchor {
   @apply absolute invisible no-underline;
   margin-left: -1em;
@@ -168,9 +149,10 @@ p {
   @apply visible;
 }
 
-.prose a:not(.btn) {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
-}
+// .prose a:not(.btn) {
+  // @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  // @apply transition-all;
+// }
 
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
@@ -269,4 +251,32 @@ table {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
+}
+
+.twitter, .x {
+  @apply transition-all duration-500 hover:text-[#000];
+}
+
+.facebook {
+  @apply transition-all duration-500 hover:text-[#1877f2];
+}
+
+.instagram {
+  @apply transition-all duration-500 hover:text-[#405de6];
+}
+
+.linkedin {
+  @apply transition-all duration-500 hover:text-[#0a66c2];
+}
+
+.github {
+  @apply transition-all duration-500 hover:text-[#6e5494];
+}
+
+.email {
+  @apply transition-all duration-500 hover:text-[#ffffff];
+}
+
+.rss {
+  @apply transition-all duration-500 hover:text-[#f26522];
 }

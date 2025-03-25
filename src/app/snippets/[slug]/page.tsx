@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { formatDate, getPost, getSlugs } from '../utils'
+import { formatDate, getSnippet, getSnippetsSlugs } from '@/lib/utils'
 import { url, site } from '@/config'
 
 export async function generateStaticParams() {
-  return getSlugs()
+  return getSnippetsSlugs()
 }
 
 export async function generateMetadata({
@@ -14,7 +14,7 @@ export async function generateMetadata({
   }>
 }) {
   const { slug } = await params
-  const post = await getPost(slug)
+  const post = await getSnippet(slug)
   if (!post) return
 
   const {
@@ -35,7 +35,7 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `${site.url}/posts/${post.slug}`,
+      url: `${site.url}/snippets/${post.slug}`,
       images: [
         {
           url: ogImage
@@ -59,7 +59,7 @@ export default async function Blog({
   }>
 }) {
   const { slug } = await params
-  const post = await getPost(slug)
+  const post = await getSnippet(slug)
 
   if (!post) notFound()
 

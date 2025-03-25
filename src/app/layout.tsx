@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import { RandomVideo } from '@/components/video'
 import { YoutubeVideo, YoutubeSkeleton } from '@/components/youtube'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Nunito, Geist, Geist_Mono } from 'next/font/google'

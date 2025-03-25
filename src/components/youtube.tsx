@@ -5,12 +5,11 @@ import { useEffect, useState } from 'react'
 import { YouTubeEmbed } from '@next/third-parties/google'
 
 export function YoutubeVideo() {
-  const [videoId, setVideoId] = useState<string>('')
+  const [videoId, setVideoId] = useState('')
   
   useEffect(() => {
-    const videos = ['BS46C2z5lVE', 'htgr3pvBr-I', 'XEjLoHdbVeE', 'Zi_XLOBDo_Y']
+    const videos = ['BS46C2z5lVE', 'htgr3pvBr-I', 'XEjLoHdbVeE', 'Zi_XLOBDo_Y', 'zTDeEJyCmNA']
     
-    // Tentar obter o videoId e timestamp do localStorage
     const storedData = localStorage.getItem('youtubeVideoData')
     let shouldLoadNewVideo = true
     
@@ -21,7 +20,7 @@ export function YoutubeVideo() {
         // const expirationTime = 1000 * 60 * 60 * 2 // 2 horas em milissegundos
         const expirationTime = 1000 * 60 * 5 // 5 minutos para testes
         
-        // Verificar se o timestamp ainda é válido (menos de 2 horas)
+        // Verificar se o timestamp ainda é válido
         if (id && timestamp && currentTime - timestamp < expirationTime) {
           setVideoId(id)
           shouldLoadNewVideo = false
@@ -33,8 +32,8 @@ export function YoutubeVideo() {
     
     // Se precisamos carregar um novo vídeo (dados expirados ou primeira visita)
     if (shouldLoadNewVideo) {
-      const randomSeed = Math.random()
-      const newVideoId = videos[Math.floor(randomSeed * videos.length)]
+      const videoIndex = Math.floor(Math.random() * videos.length)
+      const newVideoId = videos[videoIndex]
       
       // Salvar o novo ID e timestamp atual
       localStorage.setItem('youtubeVideoData', JSON.stringify({

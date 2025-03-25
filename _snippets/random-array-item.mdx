@@ -1,0 +1,48 @@
+---
+title: 'Selecionando um item aleatório de um array em TypeScript'
+publishDate: '2025-03-10'
+summary: ''
+image: '/images/posts/typescript.svg'
+---
+
+## Usando o `Match.random()`
+
+```ts
+const randomArrayItem = <T>(array: T[]): T => {  
+  return array[Math.floor(Math.random() * array.length)];
+};  
+``` 
+  
+  
+```ts
+let arr: number[] = [1, 2, 3, 4, 5];
+
+if (arr.length === 0) {
+  console.log(undefined);
+} else {
+  const ind: number = Math.floor(Math.random() * arr.length);
+  const result: number = arr[ind];
+  console.log(`Random Element = ${result}`);
+}
+```
+
+## Usando o `splice()`
+
+```typescript
+let arr: number[] = [1, 2, 3, 4, 5, 6, 8, 7];
+
+if (arr.length === 0) {
+  console.log(undefined);
+} else {
+  const ind = Math.floor(Math.random() * arr.length);
+  const result = arr.splice(ind, 1)[0];
+  console.log(`Random Element = ${result}`);
+}
+
+```
+
+Fontes: 
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+- [GeeksForGeeks](https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-typescript/)
+- [Stack Overflow](https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array)
+- [Stack Overflow](https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array)

@@ -3,11 +3,41 @@ import path from 'path'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { components } from '@/components/mdx'
 
-const contentDir = path.join(process.cwd(), '_posts')
+const postsPath = path.join(process.cwd(), '_posts')
+const snippetsPath = path.join(process.cwd(), '_snippets')
+
+export async function getSnippet(slug: string) {
+  return await getItem('snippets', slug)
+}
 
 export async function getPost(slug: string) {
+  return await getItem('posts', slug)
+}
+
+export async function getPosts() {
+  const files = fs.readdirSync(postsPath)
+  const blogs = await Promise.all(
+    files.map(async (file) => await getPost(path.parse(file).name))
+  )
+  return blogs
+}
+
+export async function getSnippets() {
+  const files = fs.readdirSync(snippetsPath)
+  return await Promise.all(files.map(async (file) => await getSnippet(path.parse(file).name)))
+}
+
+export function getSnippetsSlugs() {
+  return getSlugs('snippets')
+}
+
+export function getPostsSlugs() {
+  return getSlugs('posts')
+}
+
+export async function getItem(type: string = 'posts', slug: string) {
   const fileName = slug + '.mdx'
-  const filePath = path.join(contentDir, fileName)
+  const filePath = type === 'snippets' ? path.join(snippetsPath, fileName) : path.join(postsPath, fileName)
   const fileContent = fs.readFileSync(filePath, 'utf-8')
 
   const { frontmatter, content } = await compileMDX<{
@@ -29,16 +59,16 @@ export async function getPost(slug: string) {
   }
 }
 
-export async function getPosts() {
-  const files = fs.readdirSync(contentDir)
+export async function getItems(type: string) {
+  const files = type === 'snippets' ? fs.readdirSync(postsPath) : fs.readdirSync(snippetsPath)
   const blogs = await Promise.all(
     files.map(async (file) => await getPost(path.parse(file).name))
   )
   return blogs
 }
 
-export function getSlugs() {
-  const files = fs.readdirSync(contentDir)
+function getSlugs(type: string) {
+  const files = type === 'snippets' ? fs.readdirSync(postsPath) : fs.readdirSync(snippetsPath)
   const slugs = files.map((file) => ({ slug: path.parse(file).name }))
   return slugs
 }

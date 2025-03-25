@@ -35,9 +35,6 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  
   // Monokai
   --monokai-dark: var(--color-monokai-dark);
   --monokai-fg: var(--color-monokai-fg);
