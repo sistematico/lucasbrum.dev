@@ -35,6 +35,7 @@ export function Navbar() {
             <Link
               key={path}
               href={path}
+              prefetch={true}
               className={`
                 nav-item relative text-sm py-1 px-1
                 flex items-center gap-1.5

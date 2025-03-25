@@ -3,11 +3,7 @@ import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
   transpilePackages: ['next-mdx-remote'],
-  pageExtensions: ['mdx', 'ts', 'tsx'],
-  experimental: {
-    viewTransition: true,
-    mdxRs: true
-  }
+  pageExtensions: ['mdx', 'ts', 'tsx']
 }
 
 const withMDX = createMDX({})

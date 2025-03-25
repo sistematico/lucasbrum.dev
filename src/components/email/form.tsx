@@ -80,7 +80,7 @@ export function ContactForm() {
             id="name"
             name="name"
             placeholder="Seu nome"
-            value="Anônimo"
+            defaultValue="Anônimo"
             required
             className="w-full bg-[#111] rounded-xl p-4 border-0 focus:ring-1 focus:ring-gray-400 placeholder:text-gray-600"
           />

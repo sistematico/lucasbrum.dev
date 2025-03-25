@@ -5,6 +5,8 @@ import { Nunito, Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
+// import { LoadingIndicator } from '@/components/loading'
+import { ProgressBar } from '@/components/progress-bar'
 import { site } from '@/config'
 import type { Metadata } from 'next'
 import '@/styles/main.scss'
@@ -27,7 +29,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: site.title,
   description: site.description,
-  icons: site.ogImage,
+  // icons: site.ogImage,
   openGraph: {
     type: 'website',
     url: site.url,
@@ -49,6 +51,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
+          {/* <LoadingIndicator /> */}
+          <ProgressBar />
           <main className="flex flex-col flex-auto min-w-0 max-w-[720px] w-full space-y-5 my-10 mx-3 md:mx-0">
             <Navbar />
             <div className="page-content">{children}</div>
