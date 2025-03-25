@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -eE
 
 PATH=$PATH:/home/nginx/.bun/bin
 DEPLOY_TIMESTAMP=$(date +%Y%m%d%H%M%S)
@@ -66,7 +66,10 @@ perform_rollback() {
     exit 1
 }
 
+
 # Trap para capturar erros e iniciar rollback
+trap 'if [ $? -ne 0 ]; then perform_rollback; fi' EXIT
+
 trap perform_rollback ERR
 
 # Parar o serviço
@@ -87,7 +90,8 @@ bun install
 #bun run db:seed
 
 echo "Construindo aplicação..."
-bun run build
+#bun run build
+bun run build || { echo "Build failed"; exit 1; }
 
 # Iniciar serviço
 echo "Iniciando serviço..."
