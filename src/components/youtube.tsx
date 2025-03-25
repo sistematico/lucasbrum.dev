@@ -1,26 +1,67 @@
 'use client'
 
-import { useYoutube } from '@/contexts/youtube-context'
-import { Play } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useYoutube } from '@/hooks/use-youtube'
 import { YouTubeEmbed } from '@next/third-parties/google'
+import { useEffect, useState } from 'react'
+import { Play, RefreshCw } from 'lucide-react'
 
 export function YoutubeVideo() {
-  const { videoId } = useYoutube()
-  const [isMounted, setIsMounted] = useState(false)
+  // Use null para o estado inicial para distinguir entre "não inicializado" e "string vazia"
+  const [videoId, setVideoId] = useState<string | null>(null)
   
+  // Esta função deve ser definida fora do useEffect para ser reutilizável
+  const loadNewVideo = () => {
+    const videos = ['BS46C2z5lVE', 'htgr3pvBr-I', 'XEjLoHdbVeE', 'Zi_XLOBDo_Y', 'zTDeEJyCmNA']
+    
+    // Filtrar o vídeo atual se existir
+    const availableVideos = videoId ? videos.filter(id => id !== videoId) : videos
+    const randomIndex = Math.floor(Math.random() * availableVideos.length)
+    const newId = availableVideos[randomIndex]
+    
+    // Salvar no localStorage
+    localStorage.setItem('currentVideoId', newId)
+    
+    // Atualizar o estado
+    setVideoId(newId)
+  }
+  
+  // Carregar vídeo do localStorage ou um novo vídeo apenas uma vez
   useEffect(() => {
-    setIsMounted(true)
+    // Recuperar do localStorage
+    const savedVideoId = localStorage.getItem('currentVideoId')
+    
+    if (savedVideoId) {
+      setVideoId(savedVideoId)
+    } else {
+      loadNewVideo()
+    }
+    
+    // A dependência vazia garante que isso só execute uma vez na montagem
   }, [])
   
-  if (!isMounted || !videoId) return null
+  // Se o vídeo não estiver carregado, mostrar esqueleto
+  if (!videoId) {
+    return <YoutubeSkeleton className="h-[400px]" />
+  }
   
   return (
-    <YouTubeEmbed 
-      videoid={videoId} 
-      height={400} 
-      params="rel=0&color=white" 
-    />
+    <div className="relative">
+      <div className="absolute top-3 right-3 z-10">
+        <button 
+          onClick={loadNewVideo}
+          className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 p-2 rounded-full text-black dark:text-white hover:bg-opacity-100 dark:hover:bg-opacity-100 transition-all duration-300 shadow-md"
+          title="Carregar novo vídeo"
+          aria-label="Carregar novo vídeo"
+        >
+          <RefreshCw size={16} />
+        </button>
+      </div>
+      <YouTubeEmbed 
+        videoid={videoId} 
+        height={400} 
+        params="rel=0&color=white" 
+      />
+    </div>
   )
 }
 

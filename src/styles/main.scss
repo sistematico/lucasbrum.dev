@@ -254,7 +254,7 @@ table {
 }
 
 .twitter, .x {
-  @apply transition-all duration-500 hover:text-[#000];
+  @apply transition-all duration-500 hover:text-[#000] dark:hover:text-[#fff];
 }
 
 .facebook {
@@ -274,7 +274,7 @@ table {
 }
 
 .email {
-  @apply transition-all duration-500 hover:text-[#ffffff];
+  @apply transition-all duration-500 hover:text-[#000] dark:hover:text-[#fff];
 }
 
 .rss {

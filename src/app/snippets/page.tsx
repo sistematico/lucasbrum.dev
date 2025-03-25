@@ -32,7 +32,7 @@ export default async function BlogPage() {
               <Link key={snippet.slug} href={`/snippets/${snippet.slug}`}>
                 <div className="flex py-2">
                   <div className="w-42 flex-none text-neutral-600 dark:text-neutral-400">
-                    {formatDate(snippet.frontmatter.publishDate, false)}
+                    {snippet.frontmatter.category}
                   </div>
                   <div className="ml-2 text-neutral-900 dark:text-neutral-100 tracking-tight">
                     {snippet.frontmatter.title}

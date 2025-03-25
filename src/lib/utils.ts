@@ -46,6 +46,7 @@ export async function getItem(type: string = 'posts', slug: string) {
     publishDate: string
     summary: string
     image: string
+    category?: string
   }>({
     source: fileContent,
     options: { parseFrontmatter: true },

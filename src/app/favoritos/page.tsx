@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { bookmarks } from './data'
+import { bookmarks as data } from './data'
 import { site } from '@/config'
 import type { Metadata } from 'next'
 import { PageTransition } from '@/components/transition'
@@ -10,26 +10,24 @@ export const metadata: Metadata = {
 }
 
 export default function BookmarksPage() {
-  // Organizar bookmarks por categoria
-  const bookmarksByCategory: Record<string, typeof bookmarks> =
-    bookmarks.reduce((acc, bookmark) => {
+  const bookmarks: Record<string, typeof data> =
+    data.reduce((acc, bookmark) => {
       if (!acc[bookmark.category]) acc[bookmark.category] = []
       acc[bookmark.category].push(bookmark)
       return acc
-    }, {} as Record<string, typeof bookmarks>)
+    }, {} as Record<string, typeof data>)
 
-  // Ordenar categorias alfabeticamente
-  const sortedCategories = Object.keys(bookmarksByCategory).sort()
+  const categories = Object.keys(bookmarks).sort()
 
   return (
     <PageTransition>
       <section>
         <h2 className="text-xl font-medium tracking-tight">Favoritos</h2>
-        {sortedCategories.map((category) => (
+        {categories.map((category) => (
           <div key={category}>
             <h3 className="font-medium tracking-tight mt-5 mb-1">{category}</h3>
             <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-              {bookmarksByCategory[category]
+              {bookmarks[category]
                 .sort((a, b) => a.name.localeCompare(b.name)) // Ordenar os bookmarks dentro da categoria
                 .map((bookmark) => (
                   <li key={bookmark.url}>
