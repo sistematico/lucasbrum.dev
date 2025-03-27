@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useMemo, ReactNode, useCallback } from 'react'
 
 type YoutubeContextType = {
   videoId: string;
@@ -16,9 +16,10 @@ export function YoutubeProvider({ children }: { children: ReactNode }) {
   const [videoId, setVideoId] = useState('')
   const [isMounted, setIsMounted] = useState(false)
 
-  const videos = ['BS46C2z5lVE', 'htgr3pvBr-I', 'XEjLoHdbVeE', 'Zi_XLOBDo_Y', 'zTDeEJyCmNA']
+  // Define videos como uma constante para que não seja recriada a cada renderização
+  const videos = useMemo(() => ['BS46C2z5lVE', 'htgr3pvBr-I', 'XEjLoHdbVeE', 'Zi_XLOBDo_Y', 'zTDeEJyCmNA'], [])
   
-  const loadNewVideo = () => {
+  const loadNewVideo = useCallback(() => {
     // Selecionar um vídeo aleatório diferente do atual
     const newVideos = videos.filter(id => id !== videoId)
     const videoIndex = Math.floor(Math.random() * newVideos.length)
@@ -32,7 +33,7 @@ export function YoutubeProvider({ children }: { children: ReactNode }) {
     
     // Atualizar estado
     setVideoId(newVideoId)
-  }
+  }, [videoId, videos])
 
   useEffect(() => {
     // Este código só executará no cliente
@@ -67,7 +68,7 @@ export function YoutubeProvider({ children }: { children: ReactNode }) {
     }
     
     setVideoId(selectedId)
-  }, [])
+  }, [videos]) // Adicionado videos como dependência
 
   return (
     <YoutubeContext.Provider value={{ videoId, loadNewVideo }}>
