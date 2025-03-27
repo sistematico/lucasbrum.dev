@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { YoutubeVideo, YoutubeSkeleton } from '@/components/youtube'
 // import { GoogleAnalytics } from '@next/third-parties/google'
 import localFont from 'next/font/local'
-import { Geist, Geist_Mono } from 'next/font/google'
+// import { Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
@@ -15,7 +15,7 @@ import '@/styles/main.scss'
  
 // Font files can be colocated inside of `app`
 const nunito = localFont({
-  src: '../fonts/nunito.woff2',
+  src: '../fonts/nunito/nunito.woff2',
   variable: '--font-nunito',
   display: 'swap',
 }) 
@@ -25,15 +25,27 @@ const nunito = localFont({
 //   subsets: ['latin']
 // })
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
-})
+// const geistSans = Geist({
+//   variable: '--font-geist-sans',
+//   subsets: ['latin']
+// })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin']
-})
+const geistSans = localFont({
+  src: '../fonts/geist/Geist-Regular.woff2',
+  variable: '--font-nunito',
+  display: 'swap',
+}) 
+
+// const geistMono = Geist_Mono({
+//   variable: '--font-geist-mono',
+//   subsets: ['latin']
+// })
+
+const geistMono = localFont({
+  src: '../fonts/geist_mono/GeistMono-Regular.woff2',
+  variable: '--font-nunito',
+  display: 'swap',
+}) 
 
 export const metadata: Metadata = {
   title: site.title,
@@ -56,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nunito.className} antialiased flex items-center justify-center mx-auto h-full`}
+        className={`${geistSans.variable} ${geistMono.className} ${nunito.className} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
           <Suspense fallback={null}>
