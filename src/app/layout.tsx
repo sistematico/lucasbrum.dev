@@ -16,7 +16,7 @@ import '@/styles/main.scss'
 // Font files can be colocated inside of `app`
 const nunito = localFont({
   src: '../fonts/nunito/nunito.woff2',
-  variable: '--font-nunito',
+  variable: '--font-nunito-sans',
   display: 'swap',
 }) 
 
@@ -32,7 +32,7 @@ const nunito = localFont({
 
 const geistSans = localFont({
   src: '../fonts/geist/Geist-Regular.woff2',
-  variable: '--font-nunito',
+  variable: '--font-geist-sans',
   display: 'swap',
 }) 
 
@@ -43,7 +43,7 @@ const geistSans = localFont({
 
 const geistMono = localFont({
   src: '../fonts/geist_mono/GeistMono-Regular.woff2',
-  variable: '--font-nunito',
+  variable: '--font-geist-mono',
   display: 'swap',
 }) 
 
@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.className} ${nunito.className} antialiased flex items-center justify-center mx-auto h-full`}
+        className={`${geistSans.className} ${geistMono.className} ${nunito.className} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
           <Suspense fallback={null}>
