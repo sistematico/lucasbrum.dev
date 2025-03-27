@@ -1,7 +1,8 @@
 import { Suspense } from 'react'
 import { YoutubeVideo, YoutubeSkeleton } from '@/components/youtube'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { Nunito, Geist, Geist_Mono } from 'next/font/google'
+// import { GoogleAnalytics } from '@next/third-parties/google'
+import localFont from 'next/font/local'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
@@ -11,10 +12,18 @@ import { site } from '@/config'
 import type { Metadata } from 'next'
 import '@/styles/main.scss'
 
-const nunito = Nunito({
+ 
+// Font files can be colocated inside of `app`
+const nunito = localFont({
+  src: '../fonts/nunito.woff2',
   variable: '--font-nunito',
-  subsets: ['latin']
-})
+  display: 'swap',
+}) 
+
+// const nunito = Nunito({
+//   variable: '--font-nunito',
+//   subsets: ['latin']
+// })
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,7 +38,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: site.title,
   description: site.description,
-  // icons: site.ogImage,
   openGraph: {
     type: 'website',
     url: site.url,
@@ -48,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased flex items-center justify-center mx-auto h-full`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nunito.className} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
           {/* <LoadingIndicator /> */}
@@ -62,7 +70,7 @@ export default function RootLayout({
             <Footer />
           </main>
         </Providers>
-        <GoogleAnalytics gaId="G-MXKM892NMZ" />
+        {/* <GoogleAnalytics gaId="G-MXKM892NMZ" /> */}
       </body>
     </html>
   )
