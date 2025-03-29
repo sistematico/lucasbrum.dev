@@ -3,7 +3,10 @@ import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
   transpilePackages: ['next-mdx-remote'],
-  pageExtensions: ['mdx', 'ts', 'tsx']
+  pageExtensions: ['mdx', 'ts', 'tsx'],
+  experimental: {
+    scrollRestoration: true
+  }
 }
 
 const withMDX = createMDX({})
