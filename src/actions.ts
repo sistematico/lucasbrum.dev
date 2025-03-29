@@ -1,6 +1,8 @@
 'use server'
 
 import nodemailer from 'nodemailer'
+import { EmailResponse } from '@/types'
+
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -10,16 +12,10 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-type EmailResponseState = {
-  message: string;
-  error?: unknown;
-  ok?: boolean;
-}
-
 export async function sendEmail(
-  state: EmailResponseState | null,
+  state: EmailResponse | null,
   formData: FormData
-): Promise<EmailResponseState> {
+): Promise<EmailResponse> {
   const name = formData.get('name') as string
   const email = formData.get('email') as string
   const subject = formData.get('subject') as string
@@ -34,8 +30,8 @@ export async function sendEmail(
       html: message
     })
 
-    return { message: `Message Sent ${mail.messageId}`, ok: true }
+    return { message: `Mensagem enviada ${mail.messageId}`, ok: true }
   } catch (error) {
-    return { message: 'Something Went Wrong', error, ok: false }
+    return { message: 'Houve um erro no envio da mensagem', error, ok: false }
   }
 }

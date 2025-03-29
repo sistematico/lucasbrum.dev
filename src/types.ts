@@ -5,3 +5,9 @@ export interface Project {
   url: string
   image?: string
 }
+
+export interface EmailResponse {
+  message: string
+  error?: unknown
+  ok?: boolean
+}
