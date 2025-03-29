@@ -3,7 +3,6 @@
 import nodemailer from 'nodemailer'
 import { EmailResponse } from '@/types'
 
-
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {

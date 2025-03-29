@@ -4,36 +4,28 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { YouTubeEmbed } from '@next/third-parties/google'
 import { RefreshCw } from 'lucide-react'
 
-// Lista de IDs de vídeos do YouTube
 const VIDEOS = ['BS46C2z5lVE', 'htgr3pvBr-I', 'XEjLoHdbVeE', 'Zi_XLOBDo_Y', 'zTDeEJyCmNA']
-
-// Chave para armazenamento no localStorage
 const STORAGE_KEY = 'youtube_video_state'
 
-// Tipo para o estado do vídeo
 type VideoState = {
   id: string
   timestamp: number
 }
 
-// Interface do contexto
 interface YouTubeContextType {
   videoId: string
   refreshVideo: () => void
 }
 
-// Criar o contexto
 const YouTubeContext = createContext<YouTubeContextType>({
   videoId: '',
   refreshVideo: () => {}
 })
 
-// Hook para usar o contexto
 export function useYouTube() {
   return useContext(YouTubeContext)
 }
 
-// Função para selecionar um vídeo aleatório diferente do atual
 function getRandomVideo(current: string | null): string {
   const availableVideos = current ? VIDEOS.filter(id => id !== current) : VIDEOS
   return availableVideos[Math.floor(Math.random() * availableVideos.length)]
@@ -96,7 +88,6 @@ export function YouTubeProvider({ children }: { children: ReactNode }) {
   )
 }
 
-// Componente do YouTube com botão de atualização
 export function PersistentYouTube() {
   const { videoId, refreshVideo } = useYouTube()
   
