@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { PageTransition } from '@/components/transition'
+import { Mail } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -30,10 +31,15 @@ export default function Home() {
           </p>
           <p>Vamos juntos construir soluções inovadoras e impactantes!</p>
           <p>
-            <Link
+            {/* <Link
               className="inline-block btn text-lg font-semibold p-3 rounded-md bg-blue-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500"
               href="/contato"
+            > */}
+            <Link
+              className="btn group cursor-pointer text-[#111] dark:text-white bg-gray-300 hover:bg-[#cbcbcb] dark:bg-[#222] dark:hover:bg-[#333] px-6 py-3 rounded-md font-medium transition-all duration-300 ease-in-out"
+              href="/contato"
             >
+              <Mail className="inline mb-1 mr-2 h-6 w-6 transition group-hover:-translate-x-2 duration-800" />
               Entre em Contato
             </Link>
           </p>

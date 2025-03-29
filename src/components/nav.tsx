@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { ThemeSwitch } from '@/components/theme'
 import { site } from '@/config'
 import { usePathname } from 'next/navigation'
-import { Home, BookOpen, Briefcase, Heart, MailPlus, Scroll } from 'lucide-react'
+import { HardHat, Home, BookOpen, Briefcase, Heart, MailPlus, Scroll } from 'lucide-react'
+
 
 // Objeto com informações dos itens de navegação
 const navItems = {
@@ -24,7 +25,8 @@ export function Navbar() {
       <div className="flex flex-wrap items-center justify-between">
         {/* Logo/título do site */}
         <div className="flex mr-4">
-          <Link href="/" className="logo text-3xl font-semibold tracking-tight whitespace-nowrap">
+          <Link href="/" className="group logo text-3xl font-semibold tracking-tight whitespace-nowrap">
+            <HardHat size={38} className="inline-block mr-1 -mt-2 transition group-hover:rotate-[.42rad]" />
             {site.title}
           </Link>
         </div>

@@ -19,6 +19,8 @@
   --sh-jsxliterals: #6266d1;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
+
+  .image-logo { border: 5px solid #000; }
 }
 
 :is(.dark) {
@@ -32,6 +34,8 @@
   --sh-jsxliterals: #a5a3ff;
   --sh-property: #ff967d;
   --sh-entity: #ff967d;
+
+  .image-logo { border: 5px solid #fff; }
 }
 
 // Navbar
@@ -63,7 +67,7 @@ a:not(.btn):not(.nav-item):not(.social a) {
   @apply text-neutral-800 dark:text-neutral-200 transition-all duration-300 ease-in-out;
 }
 
-a:not(.btn):not(.nav-item):not(.social a)::after {
+a:not(.btn):not(.nav-item):not(.social a):not(.logo)::after {
   background-color: #3b82f6;
 }
 
@@ -149,11 +153,6 @@ p {
   @apply visible;
 }
 
-// .prose a:not(.btn) {
-  // @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
-  // @apply transition-all;
-// }
-
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
   content: '#';
@@ -236,12 +235,12 @@ table {
 }
 
 .image-logo {
-  filter: blur(.10em) grayscale(100%);
+  filter: blur(.10em) grayscale(100%) opacity(0.2);
   transition: filter 800ms ease-in-out;
 }
 
 .image-logo:hover {
-  filter: blur(0) grayscale(0%);
+  filter: blur(0) grayscale(0%) opacity(1);
 }
 
 .scrollbar-hide {
