@@ -1,51 +1,32 @@
 import { Suspense } from 'react'
-import { YoutubeVideo, YoutubeSkeleton } from '@/components/youtube'
-// import { GoogleAnalytics } from '@next/third-parties/google'
+import { YouTubeProvider, PersistentYouTube } from '@/providers/youtube'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import localFont from 'next/font/local'
-// import { Geist, Geist_Mono } from 'next/font/google'
 import { Navbar } from '@/components/nav'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
-import { LoadingIndicator } from '@/components/loading'
-import { ProgressBar } from '@/components/progress-bar'
+import { ProgressBar } from '@/components/progress'
 import { site } from '@/config'
 import type { Metadata } from 'next'
 import '@/styles/main.scss'
 
- 
-// Font files can be colocated inside of `app`
 const nunito = localFont({
   src: '../fonts/nunito/nunito.woff2',
   variable: '--font-nunito-sans',
-  display: 'swap',
-}) 
-
-// const nunito = Nunito({
-//   variable: '--font-nunito',
-//   subsets: ['latin']
-// })
-
-// const geistSans = Geist({
-//   variable: '--font-geist-sans',
-//   subsets: ['latin']
-// })
+  display: 'swap'
+})
 
 const geistSans = localFont({
   src: '../fonts/geist/Geist-Regular.woff2',
   variable: '--font-geist-sans',
-  display: 'swap',
-}) 
-
-// const geistMono = Geist_Mono({
-//   variable: '--font-geist-mono',
-//   subsets: ['latin']
-// })
+  display: 'swap'
+})
 
 const geistMono = localFont({
   src: '../fonts/geist_mono/GeistMono-Regular.woff2',
   variable: '--font-geist-mono',
-  display: 'swap',
-}) 
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: site.title,
@@ -71,23 +52,19 @@ export default function RootLayout({
         className={`${geistSans.className} ${geistMono.className} ${nunito.className} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
-          <Suspense fallback={null}>
-            <LoadingIndicator />
-          </Suspense>
-
-          <Suspense fallback={null}>
-            <ProgressBar />
-          </Suspense>
-          <main className="flex flex-col flex-auto min-w-0 max-w-[720px] w-full space-y-5 my-10 mx-3 md:mx-0">
-            <Navbar />
-            <div className="page-content">{children}</div>
-            <Suspense fallback={<YoutubeSkeleton className="h-[400px]" />}>
-              <YoutubeVideo />
+          <YouTubeProvider>
+            <Suspense fallback={null}>
+              <ProgressBar />
             </Suspense>
-            <Footer />
-          </main>
+            <main className="flex flex-col flex-auto min-w-0 max-w-[720px] w-full space-y-5 my-10 mx-3 md:mx-0">
+              <Navbar />
+              <div className="page-content">{children}</div>
+              <PersistentYouTube />
+              <Footer />
+            </main>
+          </YouTubeProvider>
         </Providers>
-        {/* <GoogleAnalytics gaId="G-MXKM892NMZ" /> */}
+        <GoogleAnalytics gaId="G-MXKM892NMZ" />
       </body>
     </html>
   )
