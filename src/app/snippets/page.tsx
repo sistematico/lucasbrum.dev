@@ -7,8 +7,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: `${site.title} - Snippets`,
-  description:
-    'Trechos de código reutilizáveis para facilitar o desenvolvimento de aplicações.'
+  description: 'Trechos de código'
 }
 
 const breadcrumbItems = [

@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { formatDate } from '@/lib/client-utils'
-import { getSnippet, getSnippetsSlugs, getTagColor } from '@/lib/server-utils'
+import { getTagColor } from '@/lib/client-utils'
+import { getSnippet, getSnippetsSlugs } from '@/lib/server-utils'
 import { site } from '@/config'
 
 export async function generateStaticParams() {
@@ -92,37 +93,11 @@ export default async function Blog({
       <h2 className="title font-semibold text-xl tracking-tighter">
         {post.frontmatter.title}
       </h2>
-      {/* <div className="flex justify-between items-center -mt-2 mb-5 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.frontmatter.publishDate)}
-        </p>
-      </div> */}
-
-      {/* // No componente de detalhe do snippet, após o título e a data */}
       <div className="flex justify-between items-center -mt-2 mb-5 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.frontmatter.publishDate)}
         </p>
       </div>
-
-      {/* Exibir tags */}
-      {/* {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-  <div className="flex flex-wrap gap-2 mb-6">
-    {post.frontmatter.tags.map(tag => (
-      <span 
-        key={tag} 
-        className={`inline-block text-sm px-3 py-1 rounded-full ${getTagColor(tag)}`}
-      >
-        {tag}
-      </span>
-    ))}
-  </div>
-)} */}
-
-      {/* // Em src/app/snippets/[slug]/page.tsx */}
-      {/* // Modifique a parte de exibição de tags: */}
-
-      {/* Exibir tags */}
       {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">
           {post.frontmatter.tags.map((tag) => (
@@ -138,9 +113,6 @@ export default async function Blog({
           ))}
         </div>
       )}
-
-      {/* <article className="prose">{post.content}</article> */}
-
       <article className="prose">{post.content}</article>
     </section>
   )

@@ -1,20 +1,17 @@
 import Link from 'next/link'
 import { formatDate } from '@/lib/client-utils'
 import { getPosts } from '@/lib/server-utils'
+import { PageTransition } from '@/components/transition'
 import { site } from '@/config'
 import type { Metadata } from 'next'
-import { PageTransition } from '@/components/transition'
 
 export const metadata: Metadata = {
   title: `${site.title} - Blog`,
-  description:
-    'Leia meus posts sobre programação, tecnologia e desenvolvimento de software.'
+  description: 'Posts sobre programação, tecnologia e desenvolvimento de software'
 }
 
 export default async function BlogPage() {
   const posts = await getPosts()
-  
-  // Agrupar posts por ano
   const postsByYear: Record<number, typeof posts> = {}
   
   posts.forEach(post => {
@@ -25,7 +22,6 @@ export default async function BlogPage() {
     postsByYear[year].push(post)
   })
   
-  // Ordenar anos em ordem decrescente
   const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a)
 
   return (

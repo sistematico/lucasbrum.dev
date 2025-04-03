@@ -3,8 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { components } from '@/components/mdx'
-// Importe as funções do client-utils
-import { getTagColor, getCategoryColor } from './client-utils'
+// import { getTagColor, getCategoryColor } from './client-utils'
 
 const postsPath = path.join(process.cwd(), '_posts')
 const snippetsPath = path.join(process.cwd(), '_snippets')
@@ -95,20 +94,15 @@ function getSlugs(type: string) {
 
 export async function getSnippetsByTag(tag: string) {
   const allSnippets = await getSnippets()
-
-  // Filtrar snippets que contêm a tag (case insensitive)
-  return allSnippets.filter((snippet) =>
-    snippet.frontmatter.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
-  )
+  return allSnippets.filter(snippet => snippet.frontmatter.tags?.some(t => t.toLowerCase() === tag.toLowerCase()))
 }
 
-// Obter lista de todas as tags únicas
 export async function getAllTags() {
   const snippets = await getSnippets()
   const tagsSet = new Set<string>()
 
   snippets.forEach((snippet) => {
-    snippet.frontmatter.tags?.forEach((tag) => {
+    snippet.frontmatter.tags?.forEach(tag => {
       tagsSet.add(tag.toLowerCase())
     })
   })
@@ -116,5 +110,4 @@ export async function getAllTags() {
   return Array.from(tagsSet).sort()
 }
 
-// Re-exportar as funções do client-utils
-export { getTagColor, getCategoryColor }
+// export { getTagColor, getCategoryColor }

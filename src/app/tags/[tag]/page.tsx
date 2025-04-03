@@ -1,5 +1,3 @@
-// src/app/tags/[tag]/page.tsx
-
 import Link from 'next/link'
 import { formatDate } from '@/lib/client-utils'
 import { getSnippetsByTag, getAllTags } from '@/lib/server-utils'
@@ -7,6 +5,7 @@ import { site } from '@/config'
 import type { Metadata } from 'next'
 import { PageTransition } from '@/components/transition'
 import { notFound } from 'next/navigation'
+import Breadcrumb from '@/components/breadcrumb'
 
 export async function generateMetadata({
   params
@@ -65,20 +64,36 @@ function getTagColor(tag: string): string {
 export default async function TagPage({
   params
 }: {
-  params: { tag: string }
+  params: Promise<{
+    tag: string
+  }>
 }) {
-  const { tag } = params
+  const { tag } = await params
   const decodedTag = decodeURIComponent(tag)
   const snippets = await getSnippetsByTag(decodedTag)
+ 
+  if (snippets.length === 0) notFound()
   
-  if (snippets.length === 0) {
-    notFound()
-  }
+  const breadcrumbItems = [
+    {
+      href: "/snippets", 
+      label: `Snippets`,
+      isCurrentPage: false
+    },
+    {
+      href: "/snippets", 
+      label: `TAG: ${decodedTag}`,
+      isCurrentPage: true
+    }
+  ]
 
   return (
     <PageTransition>
       <section>
-        <div className="flex items-center gap-3 mb-6">
+      <Breadcrumb items={breadcrumbItems} />
+      <h2 className="text-xl font-medium tracking-tight mb-6">Snippets</h2>
+
+        {/* <div className="flex items-center gap-3 mb-6">
           <Link href="/snippets" className="text-blue-600 dark:text-blue-400 hover:underline">
             ← Todos os snippets
           </Link>
@@ -86,7 +101,7 @@ export default async function TagPage({
           <h2 className="text-xl font-medium tracking-tight">
             Tag: <span className={`inline-block text-sm px-3 py-1 rounded-full ${getTagColor(decodedTag)}`}>{decodedTag}</span>
           </h2>
-        </div>
+        </div> */}
         
         <p className="text-neutral-600 dark:text-neutral-400 mb-8">
           {snippets.length} snippet{snippets.length !== 1 ? 's' : ''} com esta tag
@@ -104,7 +119,7 @@ export default async function TagPage({
               return 1
             })
             .map(snippet => (
-              <Link key={snippet.slug} href={`/snippets/${snippet.slug}`}>
+              <Link className="scard" key={snippet.slug} href={`/snippets/${snippet.slug}`}>
                 <div className="group p-4 border rounded-lg transition-all hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-black/20 hover:-translate-y-1 duration-200 border-neutral-200 dark:border-neutral-800 h-full flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between mb-2">
@@ -124,7 +139,6 @@ export default async function TagPage({
                       </p>
                     )}
                     
-                    {/* Exibir tags */}
                     {snippet.frontmatter.tags && snippet.frontmatter.tags.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-1.5">
                         {snippet.frontmatter.tags.slice(0, 4).map(t => (
@@ -142,9 +156,6 @@ export default async function TagPage({
                         )}
                       </div>
                     )}
-                  </div>
-                  <div className="mt-3 text-xs text-blue-600 dark:text-blue-400 font-medium group-hover:underline">
-                    Ver snippet →
                   </div>
                 </div>
               </Link>
