@@ -1,6 +1,7 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { formatDate, getSnippet, getSnippetsSlugs } from '@/lib/utils'
-import { url, site } from '@/config'
+import { formatDate, getSnippet, getSnippetsSlugs, getCategoryColor, getTagColor } from '@/lib/utils'
+import { site } from '@/config'
 
 export async function generateStaticParams() {
   return getSnippetsSlugs()
@@ -90,11 +91,53 @@ export default async function Blog({
       <h2 className="title font-semibold text-xl tracking-tighter">
         {post.frontmatter.title}
       </h2>
-      <div className="flex justify-between items-center -mt-2 mb-5 text-sm">
+      {/* <div className="flex justify-between items-center -mt-2 mb-5 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.frontmatter.publishDate)}
         </p>
-      </div>
+      </div> */}
+
+      {/* // No componente de detalhe do snippet, após o título e a data */}
+<div className="flex justify-between items-center -mt-2 mb-5 text-sm">
+  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+    {formatDate(post.frontmatter.publishDate)}
+  </p>
+</div>
+
+{/* Exibir tags */}
+{/* {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+  <div className="flex flex-wrap gap-2 mb-6">
+    {post.frontmatter.tags.map(tag => (
+      <span 
+        key={tag} 
+        className={`inline-block text-sm px-3 py-1 rounded-full ${getTagColor(tag)}`}
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+)} */}
+
+{/* // Em src/app/snippets/[slug]/page.tsx */}
+{/* // Modifique a parte de exibição de tags: */}
+
+{/* Exibir tags */}
+{post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+  <div className="flex flex-wrap gap-2 mb-6">
+    {post.frontmatter.tags.map(tag => (
+      <Link 
+        key={tag} 
+        href={`/tags/${encodeURIComponent(tag)}`}
+        className={`inline-block text-sm px-3 py-1 rounded-full ${getTagColor(tag)} hover:ring-2 hover:ring-offset-1 hover:ring-blue-500/50 transition-all`}
+      >
+        {tag}
+      </Link>
+    ))}
+  </div>
+)}
+
+{/* <article className="prose">{post.content}</article> */}
+
       <article className="prose">{post.content}</article>
     </section>
   )
