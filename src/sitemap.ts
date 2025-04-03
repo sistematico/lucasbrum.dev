@@ -1,4 +1,4 @@
-import { getPosts } from '@/app/posts/utils'
+import { getPosts } from '@/lib/server-utils'
 import { url } from '@/config'
 import type { MetadataRoute } from 'next'
 

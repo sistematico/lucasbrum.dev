@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation'
-import { formatDate, getPost, getSlugs } from '../utils'
+import { formatDate } from '@/lib/client-utils'
+import { getPost, getPostsSlugs } from '@/lib/server-utils'
 import { url, site } from '@/config'
 
 export async function generateStaticParams() {
-  return getSlugs()
+  return getPostsSlugs()
 }
 
 export async function generateMetadata({

@@ -1,7 +1,8 @@
 // src/app/tags/[tag]/page.tsx
 
 import Link from 'next/link'
-import { getSnippetsByTag, getAllTags, formatDate } from '@/lib/utils'
+import { formatDate } from '@/lib/client-utils'
+import { getSnippetsByTag, getAllTags } from '@/lib/server-utils'
 import { site } from '@/config'
 import type { Metadata } from 'next'
 import { PageTransition } from '@/components/transition'

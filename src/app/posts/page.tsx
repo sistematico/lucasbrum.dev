@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { getPosts, formatDate } from '@/app/posts/utils'
+import { formatDate } from '@/lib/client-utils'
+import { getPosts } from '@/lib/server-utils'
 import { site } from '@/config'
 import type { Metadata } from 'next'
 import { PageTransition } from '@/components/transition'
@@ -30,11 +31,10 @@ export default async function BlogPage() {
   return (
     <PageTransition>
       <section>
-        <h2 className="text-xl font-medium tracking-tight">Blog</h2>
-        
+        <h2 className="font-bold tracking-tight">Blog</h2>        
         {years.map(year => (
           <div key={year} className="mt-8">
-            <h3 className="text-lg font-medium tracking-tight text-neutral-800 dark:text-neutral-200 mb-3">
+            <h3 className="text-lg font-medium tracking-tight text-neutral-800 dark:text-neutral-200 mb-2">
               {year}
             </h3>
             <div>
@@ -51,8 +51,8 @@ export default async function BlogPage() {
                 .map((post) => (
                   <Link key={post.slug} href={`/posts/${post.slug}`}>
                     <div className="flex py-2">
-                      <div className="w-42 flex-none text-neutral-600 dark:text-neutral-400">
-                        {formatDate(post.frontmatter.publishDate, false)}
+                      <div className="w-10 flex-none text-neutral-600 dark:text-neutral-400">
+                        {formatDate(post.frontmatter.publishDate, false, true)}
                       </div>
                       <div className="ml-2 text-neutral-900 dark:text-neutral-100 tracking-tight">
                         {post.frontmatter.title}
