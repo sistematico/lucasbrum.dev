@@ -19,10 +19,27 @@ mkdir -p $BACKUP_DIR
 
 # Backup da versão atual funcionando
 echo "Fazendo backup da versão atual..."
+
+# Lista de arquivos e pastas para copiar
+items=(".next/" "node_modules/" "package.json" "bun.lockb" ".env.production")
 systemctl is-active lucasbrum && {
     cd $CURRENT_DIR
     mkdir -p $BACKUP_DIR/$DEPLOY_TIMESTAMP
-    cp -a .next node_modules package.json bun.lockb .env.production $BACKUP_DIR/$DEPLOY_TIMESTAMP/
+
+    # Loop através de cada item
+    for item in "${items[@]}"; do
+        # Remova a barra no final para a verificação de existência
+        check_item=$(echo "$item" | sed 's/\/$//')
+        
+        if [ -e "$check_item" ]; then
+            echo "Copiando $item para $BACKUP_DIR/$DEPLOY_TIMESTAMP/"
+            cp -r "$item" "$BACKUP_DIR/$DEPLOY_TIMESTAMP/"
+        else
+            echo "Aviso: $item não encontrado, ignorando."
+        fi
+    done
+
+    # cp -a .next node_modules package.json bun.lockb .env.production $BACKUP_DIR/$DEPLOY_TIMESTAMP/
     echo $DEPLOY_TIMESTAMP > $BACKUP_DIR/last_working_version
 }
 
