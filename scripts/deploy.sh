@@ -19,7 +19,7 @@ mkdir -p $BACKUP_DIR
 
 # Backup da versão atual funcionando
 echo "Fazendo backup da versão atual..."
-sudo systemctl is-active lucasbrum && {
+systemctl is-active lucasbrum && {
     cd $CURRENT_DIR
     mkdir -p $BACKUP_DIR/$DEPLOY_TIMESTAMP
     cp -a .next node_modules package.json bun.lockb .env.production $BACKUP_DIR/$DEPLOY_TIMESTAMP/

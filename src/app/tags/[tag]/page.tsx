@@ -10,9 +10,11 @@ import Breadcrumb from '@/components/breadcrumb'
 export async function generateMetadata({
   params
 }: {
-  params: { tag: string }
+  params: Promise<{
+    tag: string
+  }>
 }): Promise<Metadata> {
-  const { tag } = params
+  const { tag } = await params
   const decodedTag = decodeURIComponent(tag)
   
   return {
