@@ -11,3 +11,21 @@ export interface EmailResponse {
   error?: unknown
   ok?: boolean
 }
+
+export interface SnippetsCardProps {
+  slug: string
+  title: string
+  summary?: string
+  publishDate: string
+  category?: string
+  tags?: string[]
+  image?: string
+}
+
+export interface Station {
+  id: number
+  name: string
+  genre: string
+  streamUrl: string
+  logo?: string
+}

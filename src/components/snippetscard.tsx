@@ -2,10 +2,9 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { TagLink } from '@/components/taglink'
 import { formatDate, getTagColor, getCategoryColor } from '@/lib/client-utils'
 
-interface ProgressCardProps {
+interface SnippetsCardProps {
   slug: string
   title: string
   summary?: string
@@ -15,15 +14,7 @@ interface ProgressCardProps {
   image?: string
 }
 
-export function ProgressCard({
-  slug,
-  title,
-  summary,
-  publishDate,
-  category,
-  tags,
-  image
-}: ProgressCardProps) {
+export function SnippetsCard({ slug, title, summary, publishDate, category, tags }: SnippetsCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -47,28 +38,25 @@ export function ProgressCard({
             <span className="text-xs text-neutral-500 dark:text-neutral-400">
               {formatDate(publishDate, false)}
             </span>
-          </div>
-          
+          </div>          
           <h4 className="font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {title}
-          </h4>
-          
+          </h4>          
           {summary && (
             <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
               {summary}
             </p>
           )}
-
           {tags && tags.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
               {tags.slice(0, 4).map((tag) => (
-                <TagLink
+                <span
                   key={tag}
-                  href={`/tags/${encodeURIComponent(tag)}`}
+                  // href={`/tags/${encodeURIComponent(tag)}`}
                   className={`inline-block text-xs px-2 py-0.5 rounded-full ${getTagColor(tag)} hover:border-2 hover:border-blue-500/50 transition-all`}
                 >
                   {tag}
-                </TagLink>
+                </span>
               ))}
               {tags.length > 4 && (
                 <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-gray-50 text-gray-600 dark:bg-gray-800 dark:text-gray-300">
@@ -78,12 +66,6 @@ export function ProgressCard({
             </div>
           )}
         </div>
-        
-        {/* <div className="mt-3 text-xs text-blue-600 dark:text-blue-400 font-medium group-hover:underline">
-          Ver snippet →
-        </div> */}
-        
-        {/* Progress bar - CSS only version */}
         <div 
           className="absolute bottom-0 left-0 h-2 bg-blue-500 transition-all duration-500 ease-in-out"
           style={{ 

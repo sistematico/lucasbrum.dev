@@ -1,12 +1,13 @@
 import { Suspense } from 'react'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import localFont from 'next/font/local'
-import { Navbar } from '@/components/nav'
+import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { Providers } from '@/app/providers'
 import { ProgressBar } from '@/components/progress'
-// import PersistentVideo from '@/components/youtube'
-import PersistentYouTube from '@/components/youtube'
+// import { AudioProvider } from '@/contexts/audio'
+import { PlayerProvider } from '@/contexts/audio'
+import Player from '@/components/player'
 import { site } from '@/config'
 import type { Metadata } from 'next'
 import '@/styles/main.scss'
@@ -53,15 +54,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased flex items-center justify-center mx-auto h-full`}
       >
         <Providers>
-          <Suspense fallback={null}>
-            <ProgressBar />
-          </Suspense>
-          <main className="flex flex-col flex-auto min-w-0 max-w-[720px] w-full space-y-5 my-10 mx-3 md:mx-0">
-            <Navbar />
-            <div className="page-content">{children}</div>
-            <PersistentYouTube />
-            <Footer />
-          </main>
+          <PlayerProvider>
+            <Suspense fallback={null}>
+              <ProgressBar />
+            </Suspense>
+            <main className="flex flex-col flex-auto min-w-0 max-w-[720px] w-full space-y-5 my-10 mx-3 md:mx-0">
+              <Header />
+              <div className="page-content">
+                {children}
+                <Player />
+              </div>
+              {/* <Suspense fallback={null}>
+              <PersistentYouTube />
+              </Suspense> */}
+              <Footer />
+            </main>
+          </PlayerProvider>
         </Providers>
         <GoogleAnalytics gaId="G-MXKM892NMZ" />
       </body>
