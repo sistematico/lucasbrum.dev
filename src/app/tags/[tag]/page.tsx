@@ -64,9 +64,7 @@ function getTagColor(tag: string): string {
 export default async function TagPage({
   params
 }: {
-  params: Promise<{
-    tag: string
-  }>
+  params: Promise<{ tag: string }>
 }) {
   const { tag } = await params
   const decodedTag = decodeURIComponent(tag)
