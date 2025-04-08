@@ -7,6 +7,7 @@ DEPLOY_TIMESTAMP=$(date +%Y%m%d%H%M%S)
 BACKUP_DIR="/var/backups/lucasbrum.dev"
 # CURRENT_DIR=${{ secrets.PROJECT_PATH }}
 CURRENT_DIR="/var/www/lucasbrum.dev"
+TEMP_DIR="/tmp/lucasbrum.dev"
 HEALTH_CHECK_URL="http://localhost:4040/api/health" # Ajuste conforme sua aplicação
 MAX_HEALTH_CHECKS=10
 HEALTH_CHECK_INTERVAL=3
@@ -22,6 +23,7 @@ echo "Fazendo backup da versão atual..."
 
 # Lista de arquivos e pastas para copiar
 items=(".next/" "node_modules/" "package.json" "bun.lockb" ".env.production")
+
 systemctl is-active lucasbrum && {
     cd $CURRENT_DIR
     mkdir -p $BACKUP_DIR/$DEPLOY_TIMESTAMP
