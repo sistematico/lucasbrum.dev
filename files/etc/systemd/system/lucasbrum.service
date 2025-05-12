@@ -1,0 +1,21 @@
+[Unit]
+Description=Astro Site com Bun
+After=network.target
+
+[Service]
+Type=simple
+User=seu_usuario  # Substitua pelo seu usuário
+WorkingDirectory=/var/www/lucasbrum.dev
+ExecStart=/home/nginx/.bun/bin/bun run ./dist/server/entry.mjs
+Restart=on-failure
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=astro-site
+Environment=NODE_ENV=production
+Environment=HOST=0.0.0.0
+Environment=PORT=3000
+# Adicione outras variáveis de ambiente necessárias
+
+[Install]
+WantedBy=multi-user.target

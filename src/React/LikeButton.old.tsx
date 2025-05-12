@@ -1,5 +1,6 @@
-// src/components/LikeButton.tsx (versão final)
 import React, { useState, useEffect } from "react";
+import { doc, onSnapshot, updateDoc, increment } from "firebase/firestore";
+import { db } from "../firebase";
 
 const LikeButton = () => {
   const [likes, setLikes] = useState(0);
@@ -12,35 +13,25 @@ const LikeButton = () => {
   useEffect(() => {
     setIsClient(true);
 
-    // Verifica se o usuário já deu like
     const storedIsLiked = localStorage.getItem("websiteIsLiked");
     if (storedIsLiked) {
       setIsLiked(storedIsLiked === "true");
     }
 
-    // Função para obter contagem de likes
-    const fetchLikes = async () => {
-      try {
-        const response = await fetch('/api/like');
-        const data = await response.json();
-        
-        if (data.success) {
-          setLikes(Math.max(0, data.likes));
-          setAnimateLikes(true);
-          setTimeout(() => setAnimateLikes(false), 300);
-        }
-      } catch (error) {
-        console.error("Error fetching likes:", error);
+    // Listen for realtime updates from Firestore
+    const likeDocRef = doc(db, "likes", "counter");
+    const unsubscribe = onSnapshot(likeDocRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const currentLikes = docSnap.data().likes;
+        setLikes(Math.max(0, currentLikes));
+        setAnimateLikes(true);
+        setTimeout(() => setAnimateLikes(false), 300);
+      } else {
+        console.log("Document does not exist.");
       }
-    };
+    });
 
-    // Busca inicial
-    fetchLikes();
-
-    // Polling para atualizações em tempo real
-    const interval = setInterval(fetchLikes, 5000);
-    
-    return () => clearInterval(interval);
+    return () => unsubscribe();
   }, []);
 
   const triggerLikeAnimation = () => {
@@ -60,26 +51,10 @@ const LikeButton = () => {
 
     try {
       setIsProcessing(true);
-      
-      // Obtém ou gera ID do usuário
-      const userId = localStorage.getItem('userId') || crypto.randomUUID();
-      localStorage.setItem('userId', userId);
-      
-      // Envia o like para a API
-      const response = await fetch('/api/like', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId }),
+      const likeDocRef = doc(db, "likes", "counter");
+      await updateDoc(likeDocRef, {
+        likes: increment(1),
       });
-      
-      const data = await response.json();
-      
-      if (data.success && !data.alreadyLiked) {
-        setLikes(data.likes);
-      }
-      
       setIsLiked(true);
       localStorage.setItem("websiteIsLiked", "true");
       triggerLikeAnimation();

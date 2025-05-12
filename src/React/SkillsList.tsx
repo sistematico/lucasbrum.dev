@@ -37,16 +37,16 @@ const SkillsList = () => {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   const skills = {
-    "Web Development": [
+    "Desenvolvimento Web": [
       "Single Page Applications (SPAs)",
       "Landing pages and business websites",
       "Portfolio websites",
     ],
-    "Mobile Development": [
+    "Desenvolvimento Mobile": [
       "Mobile-friendly web apps",
       "React Native mobile apps",
     ],
-    "UI/UX Design & Prototyping": [
+    "UI/UX Design & Prototipagem": [
       "UI design with Figma & Canva",
       "UX research & improvements",
       "Prototyping for websites & mobile apps",
@@ -60,7 +60,7 @@ const SkillsList = () => {
   return (
     <div className="text-left pt-3 md:pt-9">
       <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold md:mb-6">
-        What I do?
+        O que eu faço?
       </h3>
       <ul className="space-y-4 mt-4 text-lg">
         {Object.entries(skills).map(([category, items]) => (

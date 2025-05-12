@@ -1,5 +1,8 @@
-// src/components/LikeButton.tsx (versão final)
+// src/components/LikeButton.tsx
 import React, { useState, useEffect } from "react";
+import { db } from "../db";
+import { likesCounter, userLikes } from "../db/schema";
+import { eq } from "drizzle-orm";
 
 const LikeButton = () => {
   const [likes, setLikes] = useState(0);
@@ -8,6 +11,8 @@ const LikeButton = () => {
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const [animateLikes, setAnimateLikes] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  
+  const COUNTER_ID = "website"; // Identificador único para o contador do site
 
   useEffect(() => {
     setIsClient(true);
@@ -21,13 +26,23 @@ const LikeButton = () => {
     // Função para obter contagem de likes
     const fetchLikes = async () => {
       try {
-        const response = await fetch('/api/like');
-        const data = await response.json();
+        // Busca o contador atual
+        const result = await db.select()
+          .from(likesCounter)
+          .where(eq(likesCounter.counter_id, COUNTER_ID))
+          .limit(1);
         
-        if (data.success) {
-          setLikes(Math.max(0, data.likes));
+        if (result.length > 0) {
+          const currentLikes = result[0].likes;
+          setLikes(Math.max(0, currentLikes));
           setAnimateLikes(true);
           setTimeout(() => setAnimateLikes(false), 300);
+        } else {
+          // Se não existir, cria um contador inicial
+          await db.insert(likesCounter)
+            .values({ counter_id: COUNTER_ID, likes: 0 })
+            .onConflictDoNothing();
+          setLikes(0);
         }
       } catch (error) {
         console.error("Error fetching likes:", error);
@@ -37,7 +52,7 @@ const LikeButton = () => {
     // Busca inicial
     fetchLikes();
 
-    // Polling para atualizações em tempo real
+    // Polling para atualizações em tempo real (alternativa ao onSnapshot)
     const interval = setInterval(fetchLikes, 5000);
     
     return () => clearInterval(interval);
@@ -61,25 +76,27 @@ const LikeButton = () => {
     try {
       setIsProcessing(true);
       
-      // Obtém ou gera ID do usuário
+      // Incrementa o contador de likes
+      await db.update(likesCounter)
+        .set({ 
+          likes: likes + 1,
+          updatedAt: new Date()
+        })
+        .where(eq(likesCounter.counter_id, COUNTER_ID));
+      
+      // Opcional: Registra o like do usuário (usando um ID anônimo do navegador)
       const userId = localStorage.getItem('userId') || crypto.randomUUID();
       localStorage.setItem('userId', userId);
       
-      // Envia o like para a API
-      const response = await fetch('/api/like', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId }),
-      });
+      await db.insert(userLikes)
+        .values({ 
+          userId: userId,
+          counterRef: COUNTER_ID
+        })
+        .onConflictDoNothing();
       
-      const data = await response.json();
-      
-      if (data.success && !data.alreadyLiked) {
-        setLikes(data.likes);
-      }
-      
+      // Atualiza estado local
+      setLikes(prev => prev + 1);
       setIsLiked(true);
       localStorage.setItem("websiteIsLiked", "true");
       triggerLikeAnimation();
