@@ -4,7 +4,7 @@ import { db } from '../../db';
 import { likesCounter, userLikes } from '../../db/schema';
 import { eq, and, sql } from 'drizzle-orm';
 
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const COUNTER_ID = "website";
     const { userId } = await request.json();
@@ -66,7 +66,7 @@ export const post: APIRoute = async ({ request }) => {
   }
 }
 
-export const get: APIRoute = async () => {
+export const GET: APIRoute = async () => {
   try {
     const COUNTER_ID = "website";
     
