@@ -20,29 +20,29 @@ if [ -z "$DB_URL" ]; then
 fi
 
 # Extrai os componentes da string de conexão
-# Formato: postgresql://username:password@host:port/database
+# Formato: postgres://username:password@host:port/database
 
 # Extrai o usuário
-DB_USER=$(echo "$DB_URL" | sed -n 's/^postgresql:\/\/\([^:]*\):.*/\1/p')
+DB_USER=$(echo "$DB_URL" | sed -n 's/^postgres:\/\/\([^:]*\):.*/\1/p')
 
 # Extrai a senha
-DB_PASS=$(echo "$DB_URL" | sed -n 's/^postgresql:\/\/[^:]*:\([^@]*\)@.*/\1/p')
+DB_PASS=$(echo "$DB_URL" | sed -n 's/^postgres:\/\/[^:]*:\([^@]*\)@.*/\1/p')
 
 # Extrai o host
-DB_HOST=$(echo "$DB_URL" | sed -n 's/^postgresql:\/\/[^@]*@\([^:]*\):.*/\1/p')
+DB_HOST=$(echo "$DB_URL" | sed -n 's/^postgres:\/\/[^@]*@\([^:]*\):.*/\1/p')
 
 # Extrai a porta
-DB_PORT=$(echo "$DB_URL" | sed -n 's/^postgresql:\/\/[^:]*:[^@]*@[^:]*:\([^/]*\)\/.*/\1/p')
+DB_PORT=$(echo "$DB_URL" | sed -n 's/^postgres:\/\/[^:]*:[^@]*@[^:]*:\([^/]*\)\/.*/\1/p')
 
 # Extrai o nome do banco de dados
-DB_NAME=$(echo "$DB_URL" | sed -n 's/^postgresql:\/\/[^/]*\/\([^?]*\).*/\1/p')
+DB_NAME=$(echo "$DB_URL" | sed -n 's/^postgres:\/\/[^/]*\/\([^?]*\).*/\1/p')
 
 # Exibe as informações extraídas (para verificação)
-# echo "Informações do banco de dados:"
-# echo "Usuário: $DB_USER"
-# echo "Host: $DB_HOST"
-# echo "Porta: $DB_PORT"
-# echo "Banco de dados: $DB_NAME"
+echo "Informações do banco de dados:"
+echo "Usuário: $DB_USER"
+echo "Host: $DB_HOST"
+echo "Porta: $DB_PORT"
+echo "Banco de dados: $DB_NAME"
 
 # Exporta as variáveis para uso em outros scripts
 export DB_USER
