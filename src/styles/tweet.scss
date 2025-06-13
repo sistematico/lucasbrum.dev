@@ -4,14 +4,12 @@
   --tweet-container-margin: 0;
   --tweet-font-family: inherit;
   --tweet-font-color: inherit;
-
   /* Light colors */
   --tweet-bg-color: #fff;
   --tweet-bg-color-hover: var(--tweet-bg-color);
-  --tweet-color-blue-secondary: theme("colors.gray.600");
-  --tweet-color-blue-secondary-hover: theme("colors.gray.100");
-  --tweet-font-color-secondary: theme("colors.gray.500");
-
+  --tweet-color-blue-secondary: var(--color-gray-600);
+  --tweet-color-blue-secondary-hover: var(--color-gray-100);
+  --tweet-font-color-secondary: var(--color-gray-500);
   /* Common properties for both themes */
   --tweet-quoted-bg-color-hover: rgba(0, 0, 0, 0.03);
   --tweet-border: 1px solid rgb(207, 217, 222);
@@ -41,13 +39,13 @@
     --tweet-bg-color-hover: var(--tweet-bg-color);
     --tweet-quoted-bg-color-hover: rgba(255, 255, 255, 0.03);
     --tweet-border: 1px solid #333;
-    --tweet-color-blue-secondary: theme("colors.white");
+    --tweet-color-blue-secondary: var(--color-white);
     --tweet-color-blue-secondary-hover: #333;
-    --tweet-font-color-secondary: theme("colors.gray.400");
+    --tweet-font-color-secondary: var(--color-gray-400);
   }
 }
 
-/* Common styles for both themes */
+/* Resto do código permanece igual... */
 .tweet .react-tweet-theme p {
   font-size: inherit;
   line-height: 1.3rem;
