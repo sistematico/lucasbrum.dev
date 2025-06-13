@@ -88,7 +88,35 @@
 }
 
 html {
-  min-width: 360px;
+  min-width: 320px;
+}
+
+// Garantir que o loading não cause layout shift
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+// Suavizar animações
+* {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+
+// Loading spinner personalizado
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
 }
 
 .prose {

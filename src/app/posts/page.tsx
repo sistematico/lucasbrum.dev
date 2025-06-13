@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LoadingLink } from "@/components/link";
 import { formatDate, getBlogPosts } from "@/lib/posts";
 
 export const metadata = {
@@ -11,7 +12,7 @@ export default function BlogPosts() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-medium">Our Blog</h1>
+      <h1 className="mb-8 text-2xl font-medium">Blog</h1>
       <div>
         {allBlogs
           .sort((a, b) => {
@@ -24,7 +25,12 @@ export default function BlogPosts() {
             return 1;
           })
           .map((post) => (
-            <Link
+            // <Link
+            //   key={post.slug}
+            //   className="flex flex-col space-y-1 mb-5 transition-opacity duration-200 hover:opacity-80"
+            //   href={`/posts/${post.slug}`}
+            // >
+            <LoadingLink
               key={post.slug}
               className="flex flex-col space-y-1 mb-5 transition-opacity duration-200 hover:opacity-80"
               href={`/posts/${post.slug}`}
@@ -37,7 +43,7 @@ export default function BlogPosts() {
                   {formatDate(post.metadata.publishedAt, false)}
                 </p>
               </div>
-            </Link>
+            </LoadingLink>
           ))}
       </div>
     </section>

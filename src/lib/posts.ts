@@ -79,7 +79,7 @@ export function formatDate(date: string, includeRelative = false) {
     formattedDate = "Hoje";
   }
 
-  let fullDate = targetDate.toLocaleString("en-us", {
+  let fullDate = targetDate.toLocaleString("pt-br", {
     month: "short",
     day: "numeric",
     year: "numeric",

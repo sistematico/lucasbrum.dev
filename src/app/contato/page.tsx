@@ -7,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <ContactForm />;
+  return (
+    <section>
+      <h1 className="mb-8 text-2xl font-medium">Contato</h1>
+      <ContactForm />
+    </section>
+  );
 }
