@@ -2,7 +2,7 @@ export const metaData = {
   baseUrl: "https://blog.lucasbrum.dev/",
   title: "Lucas Brum",
   name: "Lucas Saliés Brum",
-  ogImage: "/opengraph-image.png",
+  ogImage: "/avatar.jpg",
   description: "Blog do Lucas Brum, onde compartilho conhecimento sobre programação, tecnologia e desenvolvimento de software.",
 };
 

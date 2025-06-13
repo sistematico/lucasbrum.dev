@@ -116,7 +116,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex-auto min-w-0 mt-2 md:mt-6 flex flex-col px-6 sm:px-4 md:px-0 max-w-[624px] w-full">
+          <main className="flex flex-col flex-auto min-w-0 mt-2 md:mt-6 px-2 sm:px-3 md:px-0 max-w-[480px] w-full">
             <Navbar />
             {children}
             <Footer />

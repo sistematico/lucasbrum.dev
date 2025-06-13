@@ -67,20 +67,52 @@ export default function Page() {
           and fully customizable, making it easy to add more features.
            */}
 
-           **Desenvolvedor Full-Stack com DNA Open Source**
+          <h2>Desenvolvedor Full-Stack com DNA Open Source</h2>
 
-Há mais de duas décadas, desde 1999, mergulhei no universo Linux e nunca mais olhei para trás. Com mais de 15 anos criando soluções digitais que fazem a diferença, transformo ideias complexas em produtos elegantes e funcionais.
+          <p>
+            Há mais de duas décadas, desde 1999, mergulhei no universo Linux e
+            nunca mais olhei para trás. Com mais de 15 anos criando soluções
+            digitais que fazem a diferença, transformo ideias complexas em
+            produtos elegantes e funcionais.
+          </p>
 
-**Minha especialidade:** Next.js turbinado com Bun e TypeScript - a combinação perfeita para aplicações web ultrarrápidas e type-safe. Domino JavaScript em sua essência e evoluo constantemente com o ecossistema moderno.
+          <p>
+            **Minha especialidade:** Next.js turbinado com Bun e TypeScript - a
+            combinação perfeita para aplicações web ultrarrápidas e type-safe.
+            Domino JavaScript em sua essência e evoluo constantemente com o
+            ecossistema moderno.
+          </p>
 
-Minha caixa de ferramentas é completa: crio interfaces reativas com Vue.js, gerencio dados com SQLite e PostgreSQL usando ORMs modernos como Drizzle e Prisma, orquestro infraestruturas com Ansible, e automatizo tudo com Shell Script. Implemento pipelines de CI/CD robustos e integro soluções de inteligência artificial que elevam o potencial dos projetos.
+          <p>
+            Minha caixa de ferramentas é completa: crio interfaces reativas com
+            Vue.js, gerencio dados com SQLite e PostgreSQL usando ORMs modernos
+            como Drizzle e Prisma, orquestro infraestruturas com Ansible, e
+            automatizo tudo com Shell Script. Implemento pipelines de CI/CD
+            robustos e integro soluções de inteligência artificial que elevam o
+            potencial dos projetos.
+          </p>
 
-Sempre em busca de performance e inovação, mantenho meu código versionado com Git, seguindo as melhores práticas do mercado e garantindo entregas consistentes.
+          <p>
+            Sempre em busca de performance e inovação, mantenho meu código
+            versionado com Git, seguindo as melhores práticas do mercado e
+            garantindo entregas consistentes.
+          </p>
 
-**O que me define:** Sou um solucionador de problemas apaixonado por tecnologia, que une experiência sólida com curiosidade constante. Cada linha de código é uma oportunidade de criar algo extraordinário.
+          <p>
+            **O que me define:** Sou um solucionador de problemas apaixonado por
+            tecnologia, que une experiência sólida com curiosidade constante.
+            Cada linha de código é uma oportunidade de criar algo
+            extraordinário.
+          </p>
 
-**Vamos construir algo incrível juntos?**  
-Como desenvolvedor web freelancer, estou sempre aberto a novos desafios e parcerias. Se você tem um projeto em mente ou precisa de um profissional experiente para fortalecer sua equipe, vamos conversar! Trago não apenas código de qualidade, mas também compromisso, comunicação clara e entrega no prazo.
+          <p>
+            **Vamos construir algo incrível juntos?** Como desenvolvedor web
+            freelancer, estou sempre aberto a novos desafios e parcerias. Se
+            você tem um projeto em mente ou precisa de um profissional
+            experiente para fortalecer sua equipe, vamos conversar! Trago não
+            apenas código de qualidade, mas também compromisso, comunicação
+            clara e entrega no prazo.
+          </p>
         </p>
       </div>
     </section>

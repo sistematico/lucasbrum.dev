@@ -25,7 +25,6 @@
 //   font-family: Arial, Helvetica, sans-serif;
 // }
 
-
 @use "tailwindcss";
 @use "@/styles/tweet.scss";
 @plugin "@tailwindcss/typography";
@@ -178,4 +177,46 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+/* Classes para esconder scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Suavizar o scroll horizontal */
+.scrollbar-hide {
+  scroll-behavior: smooth;
+}
+
+/* Scroll específico apenas para a navbar */
+.navbar-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+  
+  /* Esconder scrollbar apenas na navbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Apenas em telas pequenas */
+  @media (min-width: 768px) {
+    overflow-x: visible;
+  }
+}
+
+/* Garantir que apenas a navbar tenha o comportamento de scroll */
+@media (max-width: 767px) {
+  .navbar-scroll {
+    max-width: calc(100vw - 3rem); /* Considera o padding lateral */
+  }
 }

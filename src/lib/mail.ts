@@ -2,28 +2,13 @@
 
 import nodemailer from "nodemailer";
 
-const SMTP_SERVER_USERNAME = process.env.SMTP_SERVER_USERNAME;
-const SMTP_SERVER_PASSWORD = process.env.SMTP_SERVER_PASSWORD;
-const SITE_MAIL_RECIEVER = process.env.SITE_MAIL_RECIEVER;
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "sistematico@gmail.com",
+    user: process.env.GMAIL_ADDRESS,
     pass: process.env.GMAIL_PASSWORD,
   },
 });
-
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   host: SMTP_SERVER_HOST,
-//   port: 587,
-//   secure: true,
-//   auth: {
-//     user: SMTP_SERVER_USERNAME,
-//     pass: SMTP_SERVER_PASSWORD,
-//   },
-// });
 
 export async function sendMail({
   email,
@@ -43,8 +28,8 @@ export async function sendMail({
   } catch (error) {
     console.error(
       "Something Went Wrong",
-      SMTP_SERVER_USERNAME,
-      SMTP_SERVER_PASSWORD,
+      process.env.GMAIL_ADDRESS,
+      process.env.GMAIL_PASSWORD,
       error
     );
     return;
@@ -52,14 +37,14 @@ export async function sendMail({
 
   const info = await transporter.sendMail({
     from: email,
-    to: sendTo || SITE_MAIL_RECIEVER,
+    to: sendTo || process.env.GMAIL_ADDRESS,
     subject: subject,
     text: text,
     html: html ? html : "",
   });
 
   console.log("Message Sent", info.messageId);
-  console.log("Mail sent to", SITE_MAIL_RECIEVER);
+  console.log("Mail sent to", process.env.GMAIL_ADDRESS);
 
   return info;
 }
