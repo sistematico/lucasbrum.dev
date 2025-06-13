@@ -6,7 +6,7 @@ sudo /usr/bin/systemctl stop blog.lucasbrum.dev.service
 
 [ -e .env.production ] && cp -f .env.production /tmp/.env.production.blog
 
-#git clean -fxd
+git clean -fxd
 
 [ -e /tmp/.env.production.blog ] && cp -f /tmp/.env.production.blog .env.production
 
