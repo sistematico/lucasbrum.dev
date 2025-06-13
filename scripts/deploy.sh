@@ -2,8 +2,10 @@
 
 PATH=$PATH:/home/nginx/.bun/bin
 
-#git clean -fxd
+sudo /usr/bin/systemctl stop blog.lucasbrum.dev.service
+
+git clean -fxd
 
 bun install
 
-sudo /usr/bin/systemctl restart blog.lucasbrum.dev.service
+sudo /usr/bin/systemctl start blog.lucasbrum.dev.service
