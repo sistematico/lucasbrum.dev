@@ -1,10 +1,10 @@
 [Unit] 
-Description=Lucas Brum Blog
+Description=Lucas Brum
 After=network.target
 
 [Service] 
 User=nginx
-WorkingDirectory=/var/www/blog.lucasbrum.dev
+WorkingDirectory=/var/www/lucasbrum.dev
 Environment="NODE_ENV=production" 
 ExecStart=/home/nginx/.bun/bin/bun run prod
 
