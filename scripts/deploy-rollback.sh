@@ -45,7 +45,7 @@ perform_rollback() {
         
         if [ -d $BACKUP_DIR/$ROLLBACK_VERSION ]; then
             echo "Restaurando versão: $ROLLBACK_VERSION"
-            sudo systemctl stop agrocomm
+            sudo systemctl stop $SERVICE
             
             # Restaurar arquivos críticos da última versão funcional
             cp -a $BACKUP_DIR/$ROLLBACK_VERSION/.next $CURRENT_DIR/
@@ -54,8 +54,8 @@ perform_rollback() {
                 cp $BACKUP_DIR/$ROLLBACK_VERSION/.env.production $CURRENT_DIR/
             
             # Iniciar serviço com a versão antiga
-            sudo systemctl start agrocomm
-            
+            sudo systemctl start $SERVICE
+
             # Verificar se o rollback foi bem-sucedido
             echo "Verificando saúde após rollback..."
             for i in $(seq 1 $MAX_HEALTH_CHECKS); do
