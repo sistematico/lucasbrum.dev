@@ -4,11 +4,11 @@ PATH=$PATH:/home/nginx/.bun/bin
 
 sudo /usr/bin/systemctl stop lucasbrum.dev.service
 
-[ -e .env.production ] && cp -f .env.production /tmp/.env.production.lucasbrum.dev
+[ -e .env.production ] && cp -f .env.production /tmp/.env.lucasbrum.dev
 
 git clean -fxd
 
-[ -e /tmp/.env.production.lucasbrum.dev ] && cp -f /tmp/.env.production.lucasbrum.dev .env.production
+[ -e /tmp/.env.lucasbrum.dev ] && cp -f /tmp/.env.lucasbrum.dev .env.production
 
 bun install
 bun run build
