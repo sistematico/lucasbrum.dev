@@ -3,8 +3,8 @@
 set -eE
 
 PATH=$PATH:/home/nginx/.bun/bin
-NAME="blog.lucasbrum.dev"
-SERVICE="blog.lucasbrum.dev.service"
+NAME="lucasbrum.dev"
+SERVICE="lucasbrum.dev.service"
 DEPLOY_TIMESTAMP=$(date +%Y%m%d%H%M%S)
 BACKUP_DIR="/var/backups/$NAME"
 CURRENT_DIR="/var/www/$NAME"
