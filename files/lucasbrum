@@ -1,0 +1,1 @@
+nginx ALL=NOPASSWD: /usr/bin/systemctl is-active lucasbrum.dev.service, /usr/bin/systemctl stop lucasbrum.dev.service, /usr/bin/systemctl start lucasbrum.dev.service, /usr/bin/systemctl restart lucasbrum.dev.service, /usr/bin/systemctl status lucasbrum.dev.service
