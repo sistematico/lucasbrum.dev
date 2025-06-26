@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
 PATH=$PATH:/home/nginx/.bun/bin
+NAME="lucasbrum.dev"
+SERVICE="${NAME}.service"
 
-sudo /usr/bin/systemctl stop lucasbrum.dev.service
+sudo /usr/bin/systemctl stop $SERVICE
 
-[ -e .env.production ] && cp -f .env.production /tmp/.env.lucasbrum.dev
+[ -e .env.production ] && cp -f .env.production /tmp/.env.$NAME
 
 git clean -fxd
 
-[ -e /tmp/.env.lucasbrum.dev ] && cp -f /tmp/.env.lucasbrum.dev .env.production
+[ -e /tmp/.env.$NAME ] && cp -f /tmp/.env.$NAME .env.production
 
 bun install
 bun run build
 
-sudo /usr/bin/systemctl start lucasbrum.dev.service
+sudo /usr/bin/systemctl start $SERVICE
