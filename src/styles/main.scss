@@ -99,7 +99,8 @@
 
 /* Dark theme colors */
 .dark {
-  background-color: #111010;
+  // background-color: #111010;
+  background-color: #121113;
   --sh-class: #4c97f8;
   --sh-identifier: white;
   --sh-sign: #8996a3;
@@ -124,9 +125,11 @@ body {
 // Suavizar animações
 * {
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 // Loading spinner personalizado

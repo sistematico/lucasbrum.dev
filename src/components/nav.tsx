@@ -30,7 +30,7 @@ export function Navbar() {
       ? "text-2xl md:text-3xl font-semibold transition-all duration-200"
       : "text-sm md:text-base transition-all duration-200 whitespace-nowrap relative";
 
-    const activeClasses = isActive(path)
+    const activeClasses = isActive(path) && !isLogo
       ? "text-blue-600 dark:text-blue-400 font-medium"
       : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200";
 

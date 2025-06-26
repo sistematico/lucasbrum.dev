@@ -111,10 +111,10 @@ export default async function Blog({
         }}
       />
       <LoadingLink
-        className="group relative inline-flex items-center overflow-hidden rounded-sm bg-gray-600 px-8 py-3 text-white focus:outline-none mb-5"
+        className="group relative inline-flex items-center overflow-hidden px-8 py-3 text-white mb-5"
         href="/posts"
       >
-        <span className="absolute -start-full transition-all group-hover:start-4">
+        <span className="absolute transition-all group-hover:-start-full start-1">
           <svg
             className="size-6 rotate-180"
             xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,7 @@ export default async function Blog({
             />
           </svg>
         </span>
-        <span className="text-sm font-medium transition-all group-hover:ms-4">
+        <span className="font-medium transition-all group-hover:-ms-6 uppercase">
           {" "}
           Voltar{" "}
         </span>
