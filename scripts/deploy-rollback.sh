@@ -4,7 +4,7 @@ set -eE
 
 PATH=$PATH:/home/nginx/.bun/bin
 NAME="lucasbrum.dev"
-SERVICE="lucasbrum.dev.service"
+SERVICE="${NAME}.service"
 DEPLOY_TIMESTAMP=$(date +%Y%m%d%H%M%S)
 BACKUP_DIR="/var/backups/$NAME"
 CURRENT_DIR="/var/www/$NAME"
@@ -17,11 +17,11 @@ mkdir -p $BACKUP_DIR
 
 # Backup da configuração atual
 [ -e .env.production ] && cp -f .env.production /tmp/env.$NAME
-# cp /tmp/env.$NAME .env.production
 
 # Backup da versão atual funcionando
 echo "Fazendo backup da versão atual..."
-sudo /usr/bin/systemctl is-active $SERVICE && {
+
+sudo /usr/bin/systemctl is-active $SERVICE > /dev/null && {
     cd $CURRENT_DIR
     mkdir -p $BACKUP_DIR/$DEPLOY_TIMESTAMP
     cp -a .next node_modules package.json bun.lockb .env.production $BACKUP_DIR/$DEPLOY_TIMESTAMP/ 2>/dev/null
@@ -45,7 +45,7 @@ perform_rollback() {
         
         if [ -d $BACKUP_DIR/$ROLLBACK_VERSION ]; then
             echo "Restaurando versão: $ROLLBACK_VERSION"
-            sudo systemctl stop $SERVICE
+            sudo /usr/bin/systemctl stop $SERVICE
             
             # Restaurar arquivos críticos da última versão funcional
             cp -a $BACKUP_DIR/$ROLLBACK_VERSION/.next $CURRENT_DIR/
@@ -54,7 +54,7 @@ perform_rollback() {
                 cp $BACKUP_DIR/$ROLLBACK_VERSION/.env.production $CURRENT_DIR/
             
             # Iniciar serviço com a versão antiga
-            sudo systemctl start $SERVICE
+            sudo /usr/bin/systemctl start $SERVICE
 
             # Verificar se o rollback foi bem-sucedido
             echo "Verificando saúde após rollback..."
