@@ -52,7 +52,8 @@
 }
 
 .tweet .react-tweet-theme p a {
-  @apply border-b border-gray-300 transition-[border-color] hover:border-gray-600;
+  // @apply border-b border-gray-300 transition-[border-color] hover:border-gray-600;
+  @apply border-b transition-[border-color] hover:border-gray-600;
 }
 
 /* Dark theme link styles */
