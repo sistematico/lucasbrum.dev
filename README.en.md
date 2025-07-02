@@ -6,23 +6,23 @@
 
 [![Deploy](https://github.com/sistematico/lucasbrum.dev/actions/workflows/deploy.yml/badge.svg)](https://github.com/sistematico/lucasbrum.dev/actions/workflows/deploy.yml)
 
-Este projeto foi desenvolvido usando o [Next.js](https://nextjs.org) iniciado com o [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Começando
+## Getting Started
 
-Primeiro inicie o servidor de desenvolvimento local:
+First, run the development server:
 
 ```bash
 npm run dev
-# ou
+# or
 yarn dev
-# ou
+# or
 pnpm dev
-# ou
+# or
 bun dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000) com o seu navegador e veja o resultado.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -43,4 +43,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-[[en_US](./README.en.md)|pt_BR]
+[en_US|[pt_BR](./README.md)]
