@@ -1,6 +1,7 @@
-import Link from "next/link";
+// import Link from "next/link";
 import { LoadingLink } from "@/components/link";
 import { formatDate, getBlogPosts } from "@/lib/posts";
+import { PostStats } from "@/components/post-stats";
 
 export const metadata = {
   title: "Blog",
@@ -41,6 +42,7 @@ export default function BlogPosts() {
                 </h2>
                 <p className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm">
                   {formatDate(post.metadata.publishedAt, false)}
+                  <PostStats slug={post.slug} />
                 </p>
               </div>
             </LoadingLink>

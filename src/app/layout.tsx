@@ -1,8 +1,7 @@
 import { Nunito } from "next/font/google";
 import { Navbar } from "@/components/nav";
-// import { Analytics } from "@vercel/analytics/react";
-// import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/footer";
+import Rain from "@/components/rain";
 import { ThemeProvider } from "@/components/theme";
 import { LoadingProvider } from "@/hooks/use-loading";
 import { metaData } from "@/config";
@@ -56,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${nunito.variable}`}>
+    <html lang="en" className={`${nunito.variable} bg-transparent`} suppressHydrationWarning>
       <head>
         <link
           rel="alternate"
@@ -85,7 +84,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LoadingProvider>
+            <Rain />
             <main className="flex flex-col min-h-screen max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+            {/* <main className="flex flex-col min-h-screen max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8 z-10"> */}
               {/* <main className="flex flex-col flex-auto min-w-0 mt-2 md:mt-6 px-2 sm:px-3 md:px-0 max-w-[480px] w-full"> */}
               <Navbar />
               {children}
@@ -93,7 +94,7 @@ export default function RootLayout({
               {/* <Analytics /> */}
               {/* <SpeedInsights /> */}
             </main>
-          </LoadingProvider>
+          </LoadingProvider>          
         </ThemeProvider>
       </body>
     </html>

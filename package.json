@@ -7,10 +7,16 @@
     "build": "next build",
     "start": "next start",
     "prod": "next start -p 9090",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
+    "better-sqlite3": "^12.2.0",
+    "drizzle-orm": "^0.44.2",
     "feed": "^5.1.0",
     "next": "15.3.3",
     "next-mdx-remote": "^5.0.0",
@@ -31,16 +37,21 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.4",
     "sass": "^1.89.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
   "trustedDependencies": [
     "@parcel/watcher",
-    "@tailwindcss/oxide"
+    "@tailwindcss/oxide",
+    "better-sqlite3",
+    "esbuild",
+    "sharp"
   ]
 }

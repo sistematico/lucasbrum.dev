@@ -100,7 +100,7 @@
 /* Dark theme colors */
 .dark {
   // background-color: #111010;
-  background-color: #121113;
+  // background-color: #121113;
   --sh-class: #4c97f8;
   --sh-identifier: white;
   --sh-sign: #8996a3;
@@ -297,5 +297,21 @@ table {
 @media (max-width: 767px) {
   .navbar-scroll {
     max-width: calc(100vw - 3rem); /* Considera o padding lateral */
+  }
+}
+
+// Garantir que o footer não cause overflow
+footer {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+// Em viewports muito pequenos
+@media (max-width: 360px) {
+  footer {
+    .flex {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
   }
 }

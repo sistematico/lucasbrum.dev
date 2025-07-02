@@ -42,8 +42,8 @@ export const ThemeSwitch: React.FC = () => {
   };
 
   const reflectPreference = (theme: "light" | "dark") => {
-    document.documentElement.classList.remove("bg-light", "bg-dark");
-    document.documentElement.classList.add(`bg-${theme}`);
+    // document.documentElement.classList.remove("bg-light", "bg-dark");
+    // document.documentElement.classList.add(`bg-${theme}`);
     setCurrentTheme(theme);
     setTheme(theme);
   };

@@ -5,15 +5,11 @@ import { socialLinks } from "@/config";
 export default function Page() {
   return (
     <section>
-      <Link 
-        href={socialLinks.twitter} 
-        target="_blank"
-      >
+      <Link href={socialLinks.twitter} target="_blank">
         <Image
           src="/avatar.jpg"
           alt="Lucas"
-          className="rounded-full ring-4 ring-gray-600 dark:ring-gray-500 bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale-50 opacity-50"           
-          unoptimized
+          className="rounded-full ring-4 ring-gray-600 dark:ring-gray-500 bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale-50 opacity-50"
           width={160}
           height={160}
           priority

@@ -43,3 +43,8 @@ next-env.d.ts
 
 # custom
 *.old*
+*.db
+*.sqlite
+
+drizzle/**
+!drizzle/.gitkeep

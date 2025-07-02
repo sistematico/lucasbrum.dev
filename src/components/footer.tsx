@@ -29,6 +29,8 @@ function SocialLink({ href, icon: Icon }: SocialLinkProps) {
 function SocialLinks() {
   return (
     // <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
+    // <div className="flex text-lg gap-3.5 transition-opacity duration-300 hover:opacity-90">
+    // <div className="flex text-lg gap-3.5 transition-opacity duration-300 hover:opacity-90 justify-center sm:justify-end">
     <div className="flex text-lg gap-3.5 transition-opacity duration-300 hover:opacity-90">
       <SocialLink href={socialLinks.twitter} icon={FaXTwitter} />
       <SocialLink href={socialLinks.github} icon={FaGithub} />
@@ -44,10 +46,15 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4]">
-      <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between sm:items-center">
-        {/* <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]"> */}
-        <small className="text-center sm:text-left">
+    // <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4]">
+    // <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between sm:items-center">
+    // {/* <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]"> */}
+    // <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4]">
+    //   <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+    //     <small className="text-center sm:text-left">
+    <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4] w-full">
+      <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between w-full">
+        <small className="text-center sm:text-left w-full sm:w-auto">
           <time>© {YEAR}</time>{" "}
           <a
             className="no-underline"
@@ -66,7 +73,9 @@ export default function Footer() {
             }
           }
         `}</style>
-        <SocialLinks />
+        <div className="w-full sm:w-auto flex justify-center sm:justify-end">
+          <SocialLinks />
+        </div>
         {/* </small> */}
       </div>
     </footer>

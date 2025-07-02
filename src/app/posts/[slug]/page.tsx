@@ -5,7 +5,9 @@ import { CustomMDX } from "@/components/mdx";
 import { LoadingLink } from "@/components/link";
 import { formatDate, getBlogPosts } from "@/lib/posts";
 import { metaData } from "@/config";
-import { FaArrowLeft } from "react-icons/fa6";
+// import { FaArrowLeft } from "react-icons/fa6";
+import { PostTracker } from "@/components/post-tracker";
+import { PostStats } from "@/components/post-stats";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -88,6 +90,7 @@ export default async function Blog({
 
   return (
     <section>
+      <PostTracker slug={post.slug} />
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -135,11 +138,16 @@ export default async function Blog({
           Voltar{" "}
         </span>
       </LoadingLink>
-      <h1 className="title mb-3 font-medium text-2xl">{post.metadata.title}</h1>
+      <h1 className="title mb-3 font-medium text-2xl">
+        {post.metadata.title}
+      </h1>
+      <h2>
+      </h2>
       <div className="flex justify-between items-center mt-2 mb-8 text-medium">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
+        <PostStats slug={post.slug} className="mb-6" />
       </div>
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">
         <Suspense fallback={<PostSkeleton />}>
