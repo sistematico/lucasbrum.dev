@@ -13,6 +13,8 @@ git clean -fxd
 [ -e /tmp/.env.$NAME ] && cp -f /tmp/.env.$NAME .env.production
 
 bun install
+bun run db:ganerate
+bun run db:push
 bun run build
 
 sudo /usr/bin/systemctl start $SERVICE
