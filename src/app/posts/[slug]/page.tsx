@@ -4,8 +4,7 @@ import { Suspense } from "react";
 import { CustomMDX } from "@/components/mdx";
 import { LoadingLink } from "@/components/link";
 import { formatDate, getBlogPosts } from "@/lib/posts";
-import { metaData } from "@/config";
-// import { FaArrowLeft } from "react-icons/fa6";
+import { site } from "@/config";
 import { PostTracker } from "@/components/post-tracker";
 import { PostStats } from "@/components/post-stats";
 
@@ -34,7 +33,7 @@ export async function generateMetadata({
   } = post.metadata;
   let ogImage = image
     ? image
-    : `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
+    : `${site.baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -44,7 +43,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${metaData.baseUrl}/posts/${post.slug}`,
+      url: `${site.baseUrl}/posts/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -102,13 +101,11 @@ export default async function Blog({
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${metaData.baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${metaData.baseUrl}/posts/${post.slug}`,
+            image: post.metadata.image ? `${site.baseUrl}${post.metadata.image}` : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            url: `${site.baseUrl}/posts/${post.slug}`,
             author: {
               "@type": "Person",
-              name: metaData.name,
+              name: site.name,
             },
           }),
         }}

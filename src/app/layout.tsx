@@ -4,7 +4,7 @@ import Footer from "@/components/footer";
 import Rain from "@/components/rain";
 import { ThemeProvider } from "@/components/theme";
 import { LoadingProvider } from "@/hooks/use-loading";
-import { metaData } from "@/config";
+import { site } from "@/config";
 import type { Metadata } from "next";
 import "@/styles/main.scss";
 
@@ -14,18 +14,18 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(metaData.baseUrl),
+  metadataBase: new URL(site.baseUrl),
   title: {
-    default: metaData.title,
-    template: `%s | ${metaData.title}`,
+    default: site.title,
+    template: `%s | ${site.title}`,
   },
-  description: metaData.description,
+  description: site.description,
   openGraph: {
-    images: metaData.ogImage,
-    title: metaData.title,
-    description: metaData.description,
-    url: metaData.baseUrl,
-    siteName: metaData.name,
+    images: site.ogImage,
+    title: site.title,
+    description: site.description,
+    url: site.baseUrl,
+    siteName: site.name,
     locale: "en_US",
     type: "website",
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: metaData.name,
+    title: site.name,
     card: "summary_large_image",
   },
   icons: {

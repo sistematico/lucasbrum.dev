@@ -1,7 +1,7 @@
 import { Feed } from "feed";
 import { getBlogPosts } from "@/lib/posts";
-import { metaData } from "@/config";
 import { NextResponse } from "next/server";
+import { site } from "@/config";
 
 export async function generateStaticParams() {
   return [
@@ -25,30 +25,26 @@ export async function GET(
     );
   }
 
-  const BaseUrl = metaData.baseUrl.endsWith("/")
-    ? metaData.baseUrl
-    : `${metaData.baseUrl}/`;
+  const url = site.baseUrl.endsWith("/") ? site.baseUrl : `${site.baseUrl}/`;
 
   const feed = new Feed({
-    title: metaData.title,
-    description: metaData.description,
-    id: BaseUrl,
-    link: BaseUrl,
-    copyright: `All rights reserved ${new Date().getFullYear()}, ${
-      metaData.title
-    }`,
+    title: site.title,
+    description: site.description,
+    id: url,
+    link: url,
+    copyright: `All rights reserved ${new Date().getFullYear()}, ${site.title}`,
     generator: "Feed for Node.js",
     feedLinks: {
-      json: `${BaseUrl}feed.json`,
-      atom: `${BaseUrl}atom.xml`,
-      rss: `${BaseUrl}rss.xml`,
+      json: `${url}feed.json`,
+      atom: `${url}atom.xml`,
+      rss: `${url}rss.xml`,
     },
   });
 
   const allPosts = await getBlogPosts();
 
   allPosts.forEach((post) => {
-    const postUrl = `${BaseUrl}posts/${post.slug}`;
+    const postUrl = `${url}posts/${post.slug}`;
     const categories = post.metadata.tags
       ? post.metadata.tags.split(",").map((tag) => tag.trim())
       : [];

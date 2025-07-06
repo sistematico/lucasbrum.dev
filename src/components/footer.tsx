@@ -1,15 +1,9 @@
 "use client";
 
 import React from "react";
-import {
-  FaXTwitter,
-  FaGithub,
-  FaInstagram,
-  FaRss,
-  FaLinkedinIn,
-} from "react-icons/fa6";
+import { FaXTwitter, FaGithub, FaRss } from "react-icons/fa6";
 import { TbMailFilled } from "react-icons/tb";
-import { metaData, socialLinks } from "@/config";
+import { site, socialLinks } from "@/config";
 
 const YEAR = new Date().getFullYear();
 
@@ -28,14 +22,9 @@ function SocialLink({ href, icon: Icon }: SocialLinkProps) {
 
 function SocialLinks() {
   return (
-    // <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
-    // <div className="flex text-lg gap-3.5 transition-opacity duration-300 hover:opacity-90">
-    // <div className="flex text-lg gap-3.5 transition-opacity duration-300 hover:opacity-90 justify-center sm:justify-end">
     <div className="flex text-lg gap-3.5 transition-opacity duration-300 hover:opacity-90">
       <SocialLink href={socialLinks.twitter} icon={FaXTwitter} />
       <SocialLink href={socialLinks.github} icon={FaGithub} />
-      {/* <SocialLink href={socialLinks.instagram} icon={FaInstagram} /> */}
-      {/* <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} /> */}
       <SocialLink href={socialLinks.email} icon={TbMailFilled} />
       <a href="/rss.xml" target="_self">
         <FaRss />
@@ -46,12 +35,6 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    // <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4]">
-    // <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between sm:items-center">
-    // {/* <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]"> */}
-    // <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4]">
-    //   <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
-    //     <small className="text-center sm:text-left">
     <footer className="lg:mt-20 mt-12 text-[#1C1C1C] dark:text-[#D4D4D4] w-full">
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between w-full">
         <small className="text-center sm:text-left w-full sm:w-auto">
@@ -62,7 +45,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {metaData.title}
+            {site.title}
           </a>
         </small>
         <style jsx>{`
@@ -76,7 +59,6 @@ export default function Footer() {
         <div className="w-full sm:w-auto flex justify-center sm:justify-end">
           <SocialLinks />
         </div>
-        {/* </small> */}
       </div>
     </footer>
   );

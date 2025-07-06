@@ -1,4 +1,4 @@
-export const metaData = {
+export const site = {
   baseUrl: "https://lucasbrum.dev/",
   title: "Lucas Brum",
   name: "Lucas Saliés Brum",
