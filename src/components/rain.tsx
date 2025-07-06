@@ -87,11 +87,25 @@ class TextScramble {
 const RainingLetters: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [activeIndices, setActiveIndices] = useState<Set<number>>(new Set());
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar dispositivo móvel
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const createCharacters = useCallback(() => {
     const allChars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
-    const charCount = 300;
+    // Reduzir quantidade de caracteres em mobile
+    const charCount = isMobile ? 150 : 300;
     const newCharacters: Character[] = [];
 
     for (let i = 0; i < charCount; i++) {
@@ -104,7 +118,7 @@ const RainingLetters: React.FC = () => {
     }
 
     return newCharacters;
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     setCharacters(createCharacters());
@@ -113,7 +127,8 @@ const RainingLetters: React.FC = () => {
   useEffect(() => {
     const updateActiveIndices = () => {
       const newActiveIndices = new Set<number>();
-      const numActive = Math.floor(Math.random() * 3) + 3;
+      // Menos caracteres ativos em mobile
+      const numActive = isMobile ? 2 : Math.floor(Math.random() * 3) + 3;
       for (let i = 0; i < numActive; i++) {
         newActiveIndices.add(Math.floor(Math.random() * characters.length));
       }
@@ -122,7 +137,7 @@ const RainingLetters: React.FC = () => {
 
     const flickerInterval = setInterval(updateActiveIndices, 50);
     return () => clearInterval(flickerInterval);
-  }, [characters.length]);
+  }, [characters.length, isMobile]);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -154,33 +169,38 @@ const RainingLetters: React.FC = () => {
 
   return (
     <div className="fixed w-full h-full overflow-hidden">
-      {/* Title */}
-      {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <ScrambledTitle />
-      </div> */}
-
       {/* Raining Characters */}
       {characters.map((char, index) => (
         <span
           key={index}
           className={`absolute text-xs transition-colors duration-100 ${
             activeIndices.has(index)
-              ? "text-[#00ff00] text-base scale-125 z-10 font-bold animate-pulse"
-              : "text-slate-600 font-light"
+              ? isMobile 
+                ? "text-green-600/70 text-sm scale-110 z-10 font-semibold animate-pulse" // Mobile: cores menos contrastantes
+                : "text-[#00ff00] text-base scale-125 z-10 font-bold animate-pulse" // Desktop: original
+              : isMobile
+                ? "text-slate-700 font-light" // Mobile: texto mais sutil
+                : "text-slate-600 font-light" // Desktop: original
           }`}
           style={{
             left: `${char.x}%`,
             top: `${char.y}%`,
             transform: `translate(-50%, -50%) ${
-              activeIndices.has(index) ? "scale(1.25)" : "scale(1)"
+              activeIndices.has(index) 
+                ? isMobile ? "scale(1.1)" : "scale(1.25)"
+                : "scale(1)"
             }`,
             textShadow: activeIndices.has(index)
-              ? "0 0 8px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.4)"
+              ? isMobile
+                ? "0 0 4px rgba(255,255,255,0.3), 0 0 6px rgba(255,255,255,0.1)" // Mobile: sombra mais sutil
+                : "0 0 8px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.4)" // Desktop: original
               : "none",
-            opacity: activeIndices.has(index) ? 1 : 0.4,
+            opacity: activeIndices.has(index) 
+              ? isMobile ? 0.7 : 1 
+              : isMobile ? 0.2 : 0.4,
             transition: "color 0.1s, transform 0.1s, text-shadow 0.1s",
             willChange: "transform, top",
-            fontSize: "1.8rem",
+            fontSize: isMobile ? "1.2rem" : "1.8rem", // Fonte menor em mobile
           }}
         >
           {char.char}
@@ -191,6 +211,14 @@ const RainingLetters: React.FC = () => {
         .dud {
           color: #0f0;
           opacity: 0.7;
+        }
+        
+        /* Ajustes adicionais para mobile */
+        @media (max-width: 768px) {
+          .dud {
+            color: #4ade80; /* Verde mais suave em mobile */
+            opacity: 0.5;
+          }
         }
       `}</style>
     </div>

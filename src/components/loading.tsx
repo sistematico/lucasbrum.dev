@@ -45,11 +45,40 @@ export function LoadingSpinner() {
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-white/80 dark:bg-black/80 backdrop-blur-sm">
       <div className="flex flex-col items-center space-y-4">
-        {/* Spinner */}
-        <div className="relative">
-          <div className="w-12 h-12 border-4 border-gray-200 dark:border-gray-700 rounded-full animate-spin border-t-blue-500"></div>
-          <div className="absolute top-0 left-0 w-12 h-12 border-4 border-transparent rounded-full animate-pulse border-t-blue-300"></div>
-        </div>
+        {/* Spinner SVG */}
+        <svg 
+          className="w-12 h-12" 
+          viewBox="0 0 50 50"
+        >
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="currentColor"
+            strokeWidth="4"
+            fill="none"
+            className="text-gray-200 dark:text-gray-700"
+          />
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="currentColor"
+            strokeWidth="4"
+            fill="none"
+            strokeDasharray="80 20"
+            className="text-blue-500"
+          >
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 25 25"
+              to="360 25 25"
+              dur="1s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
         
         {/* Texto de carregamento */}
         <div className="text-center">

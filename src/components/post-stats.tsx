@@ -1,3 +1,4 @@
+// src/components/post-stats.tsx
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -34,16 +35,16 @@ export function PostStats({ slug, className = "" }: PostStatsProps) {
 
   if (loading) {
     return (
-      <div className={`flex items-center gap-4 text-sm text-gray-500 animate-pulse ${className}`}>
+      <span className={`inline-flex items-center gap-4 text-sm text-gray-500 animate-pulse ${className}`}>
         <span className="bg-gray-200 dark:bg-gray-700 rounded w-16 h-4"></span>
         <span className="bg-gray-200 dark:bg-gray-700 rounded w-16 h-4"></span>
         <span className="bg-gray-200 dark:bg-gray-700 rounded w-16 h-4"></span>
-      </div>
+      </span>
     );
   }
 
   return (
-    <div className={`flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 ${className}`}>
+    <span className={`inline-flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 ${className}`}>
       <span className="flex items-center gap-1">
         <FaEye className="w-4 h-4" />
         {stats.totalViews}
@@ -56,6 +57,6 @@ export function PostStats({ slug, className = "" }: PostStatsProps) {
         <FaBookOpenReader className="w-4 h-4" />
         {stats.readCount}
       </span>
-    </div>
+    </span>
   );
 }

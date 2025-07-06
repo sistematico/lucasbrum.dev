@@ -1,4 +1,4 @@
-// import Link from "next/link";
+// src/app/posts/page.tsx
 import { LoadingLink } from "@/components/link";
 import { formatDate, getBlogPosts } from "@/lib/posts";
 import { PostStats } from "@/components/post-stats";
@@ -26,11 +26,6 @@ export default function BlogPosts() {
             return 1;
           })
           .map((post) => (
-            // <Link
-            //   key={post.slug}
-            //   className="flex flex-col space-y-1 mb-5 transition-opacity duration-200 hover:opacity-80"
-            //   href={`/posts/${post.slug}`}
-            // >
             <LoadingLink
               key={post.slug}
               className="flex flex-col space-y-1 mb-5 transition-opacity duration-200 hover:opacity-80"
@@ -40,10 +35,10 @@ export default function BlogPosts() {
                 <h2 className="text-black dark:text-white">
                   {post.metadata.title}
                 </h2>
-                <p className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm">
-                  {formatDate(post.metadata.publishedAt, false)}
+                <div className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm flex items-center gap-4">
+                  <span>{formatDate(post.metadata.publishedAt, false)}</span>
                   <PostStats slug={post.slug} />
-                </p>
+                </div>
               </div>
             </LoadingLink>
           ))}
