@@ -178,12 +178,12 @@ export default function ContactForm() {
     >
       <div className="space-y-2">
         <label htmlFor="name" className="block text-sm font-medium lg:text-base">
-          Nome:
+          Nome
         </label>
         <input
           id="name"
           type="text"
-          placeholder="João Silva"
+          placeholder="Seu Nome"
           disabled={isFormDisabled}
           className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
           {...register("name")}
@@ -195,12 +195,12 @@ export default function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="email" className="block text-sm font-medium lg:text-base">
-          Email:
+          E-mail
         </label>
         <input
           id="email"
           type="email"
-          placeholder="joao@exemplo.com"
+          placeholder="seu@email.com"
           disabled={isFormDisabled}
           className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
           {...register("email")}
@@ -212,7 +212,7 @@ export default function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="message" className="block text-sm font-medium lg:text-base">
-          Mensagem:
+          Mensagem
         </label>
         <textarea
           id="message"
@@ -230,7 +230,7 @@ export default function ContactForm() {
       {/* Captcha */}
       <div className="space-y-2">
         <label htmlFor="captcha" className="block text-sm font-medium lg:text-base">
-          Verificação de Segurança:
+          Verificação de Segurança
         </label>
         <div className="flex items-center gap-3">
           <span className="rounded-md px-3 py-2 text-lg font-medium">
@@ -272,7 +272,6 @@ export default function ContactForm() {
           : "Enviar"
         }
       </button>
-
       {cooldownTime > 0 && (
         <p className="text-center text-sm text-gray-600">
           Para evitar spam, você pode enviar uma nova mensagem em {cooldownTime} segundos.

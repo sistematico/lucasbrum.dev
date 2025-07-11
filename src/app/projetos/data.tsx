@@ -18,4 +18,10 @@ export const projects: Project[] = [
     description: "Tabela fipe de veículos",
     url: "https://sistematico.github.io/fipe",
   },
+  {
+    title: "Next.js Simple Auth",
+    year: 2025,
+    description: "Um sistema simples de autenticação com Next.js, Drizzle e Bun",
+    url: "https://auth.lucasbrum.dev",
+  },
 ];
