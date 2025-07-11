@@ -1,59 +1,9 @@
-// @use "tailwindcss";
-
-// :root {
-//   --background: #ffffff;
-//   --foreground: #171717;
-// }
-
-// @theme inline {
-//   --color-background: var(--background);
-//   --color-foreground: var(--foreground);
-//   --font-sans: var(--font-geist-sans);
-//   --font-mono: var(--font-geist-mono);
-// }
-
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --background: #0a0a0a;
-//     --foreground: #ededed;
-//   }
-// }
-
-// body {
-//   background: var(--background);
-//   color: var(--foreground);
-//   font-family: Arial, Helvetica, sans-serif;
-// }
-
 @use "tailwindcss";
 @use "@/styles/tweet.scss";
+@use "@/styles/theme.scss";
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
-  
-  --color-blue-500: #3b82f6;
-  --color-blue-600: #2563eb;
-  --color-blue-700: #1d4ed8;
-  
-  --color-red-600: #dc2626;
-  
-  --color-green-100: #dcfce7;
-  --color-green-600: #16a34a;
-  
-  --font-nunito: var(--font-nunito-sans), sans-serif;
-}
-
-@theme {
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -86,6 +36,8 @@
 
 /* Light theme colors */
 :root {
+  background-color: var(--ponokai-fg);
+  color: var(--ponokai-bg0);
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -99,8 +51,8 @@
 
 /* Dark theme colors */
 .dark {
-  // background-color: #111010;
-  // background-color: #121113;
+  background-color: var(--ponokai-black);
+  color: var(--ponokai-fg);
   --sh-class: #4c97f8;
   --sh-identifier: white;
   --sh-sign: #8996a3;
@@ -146,9 +98,9 @@ body {
   animation: spin-slow 2s linear infinite;
 }
 
-.prose {
-  @apply text-[#000000] dark:text-[#FFFFFF];
-}
+// .prose {
+//   @apply text-[#000000] dark:text-[#FFFFFF];
+// }
 
 .prose .anchor {
   @apply absolute invisible no-underline;

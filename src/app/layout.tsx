@@ -86,13 +86,9 @@ export default function RootLayout({
           <LoadingProvider>
             <Rain />
             <main className="flex flex-col min-h-screen max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
-            {/* <main className="flex flex-col min-h-screen max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8 z-10"> */}
-              {/* <main className="flex flex-col flex-auto min-w-0 mt-2 md:mt-6 px-2 sm:px-3 md:px-0 max-w-[480px] w-full"> */}
               <Navbar />
               {children}
               <Footer />
-              {/* <Analytics /> */}
-              {/* <SpeedInsights /> */}
             </main>
           </LoadingProvider>          
         </ThemeProvider>
