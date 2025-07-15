@@ -1,4 +1,5 @@
-import { Nunito } from "next/font/google";
+// import { Nunito } from "next/font/google";
+import localFont from 'next/font/local'
 import { Navbar } from "@/components/nav";
 import Footer from "@/components/footer";
 import Rain from "@/components/rain";
@@ -7,11 +8,15 @@ import { LoadingProvider } from "@/hooks/use-loading";
 import { site } from "@/config";
 import type { Metadata } from "next";
 import "@/styles/main.scss";
+ 
+const nunito = localFont({
+  src: '˜/fonts/Nunito-Regular.woff2',
+})
 
-const nunito = Nunito({
-  variable: "--font-nunito-sans",
-  subsets: ["latin"],
-});
+// const nunito = Nunito({
+//   variable: "--font-nunito-sans",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.baseUrl),
@@ -55,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${nunito.variable} bg-transparent`} suppressHydrationWarning>
+    <html lang="en" className={`${nunito.className} bg-transparent`} suppressHydrationWarning>
       <head>
         <link
           rel="alternate"
