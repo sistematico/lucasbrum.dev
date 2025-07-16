@@ -10,13 +10,8 @@ import type { Metadata } from "next";
 import "@/styles/main.scss";
  
 const nunito = localFont({
-  src: '˜/fonts/Nunito-Regular.woff2',
+  src: '../../public/fonts/Nunito-Regular.woff2',
 })
-
-// const nunito = Nunito({
-//   variable: "--font-nunito-sans",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.baseUrl),
