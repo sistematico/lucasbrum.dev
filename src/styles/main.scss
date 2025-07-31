@@ -1,6 +1,6 @@
 @use "tailwindcss";
-@use "@/styles/tweet.scss";
 @use "@/styles/theme.scss";
+@use "@/styles/tweet.scss";
 @plugin "@tailwindcss/typography";
 
 @theme inline {

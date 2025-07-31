@@ -9,16 +9,10 @@ import crypto from "crypto";
 async function getVisitorId(request: NextRequest): Promise<string> {
   const cookieStore = await cookies();
   const existingId = cookieStore.get("visitor_id")?.value;
-
-  if (existingId) {
-    return existingId;
-  }
+  if (existingId) return existingId;
 
   // Gerar novo ID baseado em IP + User Agent
-  const ip =
-    request.headers.get("x-forwarded-for") ||
-    request.headers.get("x-real-ip") ||
-    "unknown";
+  const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown";
   const userAgent = request.headers.get("user-agent") || "unknown";
 
   const hash = crypto
@@ -120,10 +114,7 @@ export async function POST(request: NextRequest) {
     const siteStatsData = await db.select().from(siteStats).get();
 
     if (!siteStatsData) {
-      await db.insert(siteStats).values({
-        totalViews: 1,
-        uniqueVisitors: 1,
-      });
+      await db.insert(siteStats).values({ totalViews: 1, uniqueVisitors: 1 });
     } else {
       await db
         .update(siteStats)
@@ -161,29 +152,16 @@ export async function GET(request: NextRequest) {
         .where(eq(postStats.slug, slug))
         .get();
 
-      return NextResponse.json(
-        stats || {
-          slug,
-          totalViews: 0,
-          uniqueViews: 0,
-          readCount: 0,
-        }
-      );
+      return NextResponse.json(stats || { slug, totalViews: 0, uniqueViews: 0, readCount: 0 });
     } else {
       // Retornar estatísticas gerais
       const stats = await db.select().from(siteStats).get();
       const allPostStats = await db.select().from(postStats).all();
 
-      return NextResponse.json({
-        site: stats || { totalViews: 0, uniqueVisitors: 0 },
-        posts: allPostStats,
-      });
+      return NextResponse.json({ site: stats || { totalViews: 0, uniqueVisitors: 0 }, posts: allPostStats });
     }
   } catch (error) {
     console.error("Erro ao buscar estatísticas:", error);
-    return NextResponse.json(
-      { error: "Erro ao buscar estatísticas" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Erro ao buscar estatísticas" }, { status: 500 });
   }
 }

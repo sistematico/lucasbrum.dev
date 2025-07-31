@@ -45,10 +45,10 @@ export default function ContactForm() {
     const num2 = Math.floor(Math.random() * 10) + 1;
     const operations = ['+', '-', '*'];
     const operation = operations[Math.floor(Math.random() * operations.length)];
-    
+
     let answer;
     let question;
-    
+
     switch (operation) {
       case '+':
         answer = num1 + num2;
@@ -72,7 +72,7 @@ export default function ContactForm() {
         answer = num1 + num2;
         question = `${num1} + ${num2}`;
     }
-    
+
     setCaptchaQuestion({ question, answer });
   };
 
@@ -110,24 +110,24 @@ export default function ContactForm() {
     if (response?.messageId) {
       // Toast de sucesso
       toast.success("Mensagem enviada com sucesso!");
-      
+
       // Mostrar mensagem de sucesso na página
       setShowSuccessMessage(true);
-      
+
       // Iniciar cooldown de 30 segundos
       setCooldownTime(30);
-      
+
       // Resetar formulário
       reset();
-      
+
       // Gerar novo captcha
       generateCaptcha();
-      
+
       // Esconder mensagem de sucesso após 10 segundos
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 10000);
-      
+
     } else {
       toast.error("Falha ao enviar mensagem.");
       generateCaptcha(); // Gerar novo captcha mesmo em caso de erro
@@ -260,18 +260,25 @@ export default function ContactForm() {
         )}
       </div>
 
-      <button
-        type="submit"
-        disabled={isFormDisabled}
-        className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {isSubmitting 
-          ? "Enviando..." 
-          : cooldownTime > 0 
-          ? `Aguarde ${cooldownTime}s para enviar novamente`
-          : "Enviar"
-        }
-      </button>
+      <div>
+        <button
+          type="submit"
+          disabled={isFormDisabled}
+          className="
+          rounded-md bg-blue-600 px-4 py-2 text-white 
+          hover:bg-blue-700 focus:outline-none 
+          focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
+          disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
+        "
+        >
+          {isSubmitting
+            ? "Enviando..."
+            : cooldownTime > 0
+              ? `Aguarde ${cooldownTime}s para enviar novamente`
+              : "Enviar"
+          }
+        </button>
+      </div>
       {cooldownTime > 0 && (
         <p className="text-center text-sm text-gray-600">
           Para evitar spam, você pode enviar uma nova mensagem em {cooldownTime} segundos.

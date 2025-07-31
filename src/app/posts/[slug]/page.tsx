@@ -7,6 +7,7 @@ import { formatDate, getBlogPosts } from "@/lib/posts";
 import { site } from "@/config";
 import { PostTracker } from "@/components/post-tracker";
 import { PostStats } from "@/components/post-stats";
+import { Button } from "@/components/ui/button";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -116,13 +117,17 @@ export default async function Blog({
       >
         <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> */}
         <LoadingLink
-          className="mb-3 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-bold rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700"
+          className="mb-3 focus:outline-none inline-flex items-center"
           href="/posts"
         >
+         <Button icon={
           <svg className="rotate-180 w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
           </svg>
+          }
+        >          
           Voltar
+          </Button> 
         {/* </button> */}
         </LoadingLink>
 
