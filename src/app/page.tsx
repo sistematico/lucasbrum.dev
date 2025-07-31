@@ -6,10 +6,17 @@ export default function Page() {
   return (
     <section>
       <Link href={socialLinks.twitter} target="_blank">
+      {/* <img class="h-48 w-96 object-contain ..." src="/img/mountains.jpg" /> */}
         <Image
-          src="/avatar.jpg"
+          src="/avatar.png"
           alt="Lucas"
-          className="rounded-full ring-4 ring-gray-600 dark:ring-gray-500 bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale-50 opacity-50"
+          className="
+            rounded-full ring-4 ring-gray-600 dark:ring-gray-500 
+            bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 
+            mx-auto sm:float-right sm:ml-5 sm:mb-5 
+            h-55 w-55 object-none
+            object-[50%_2%]
+          "
           width={160}
           height={160}
           priority

@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 
 PATH=$PATH:/home/nginx/.bun/bin
-NAME="lucasbrum.dev"
-SERVICE="${NAME}.service"
+SERVICE="lucasbrum.dev.service"
+TEMP_DIR="/tmp/lucasbrum.dev"
+OLDPWD="$(pwd)"
 
-sudo /usr/bin/systemctl stop $SERVICE
+[ -e $TEMP_DIR ] && rm -rf $TEMP_DIR
+cp -a $OLDPWD $TEMP_DIR
+cd $TEMP_DIR
 
-[ -e .env.production ] && cp -f .env.production /tmp/.env.$NAME
-
-git clean -fxd
-
-[ -e /tmp/.env.$NAME ] && cp -f /tmp/.env.$NAME .env.production
+git clean -fxd -e .env.production
+cp -f .env.production .env
 
 bun install
-bun run db:ganerate
+bun run db:generate
 bun run db:push
 bun run build
 
+sudo /usr/bin/systemctl stop $SERVICE
+[ -e $OLDPWD ] && rm -rf $OLDPWD
+cp -a $TEMP_DIR $OLDPWD
 sudo /usr/bin/systemctl start $SERVICE

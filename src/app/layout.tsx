@@ -1,8 +1,6 @@
-// import { Nunito } from "next/font/google";
 import localFont from 'next/font/local'
 import { Navbar } from "@/components/nav";
 import Footer from "@/components/footer";
-import Rain from "@/components/rain";
 import { ThemeProvider } from "@/components/theme";
 import { LoadingProvider } from "@/hooks/use-loading";
 import { site } from "@/config";
@@ -57,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.className} bg-transparent`} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -84,7 +83,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LoadingProvider>
-            <Rain />
+            {/* <Rain /> */}
             <main className="flex flex-col min-h-screen max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
               <Navbar />
               {children}
