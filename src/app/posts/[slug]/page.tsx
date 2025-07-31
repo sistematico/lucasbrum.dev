@@ -7,7 +7,6 @@ import { formatDate, getBlogPosts } from "@/lib/posts";
 import { site } from "@/config";
 import { PostTracker } from "@/components/post-tracker";
 import { PostStats } from "@/components/post-stats";
-import { Button } from "@/components/ui/button";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -111,47 +110,21 @@ export default async function Blog({
           }),
         }}
       />
-      {/* <LoadingLink
-        className="group relative inline-flex items-center overflow-hidden px-8 py-3 text-white mb-5"
-        href="/posts"
-      >
-        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> */}
         <LoadingLink
-          className="mb-3 focus:outline-none inline-flex items-center"
+          className="
+            mb-3 rounded-md px-5 py-2.5 text-center inline-flex items-center
+            border border-black/40 border-black/30 
+            shadow-sm font-bold text-black dark:text-white
+            hover:bg-transparent hover:text-black/70 dark:hover:text-white/70
+            focus:outline-none transition-all duration-200
+          "
           href="/posts"
-        >
-         <Button icon={
+        >          
           <svg className="rotate-180 w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
           </svg>
-          }
-        >          
           Voltar
-          </Button> 
-        {/* </button> */}
         </LoadingLink>
-
-        {/* <span className="absolute transition-all group-hover:-start-full start-1">
-          <svg
-            className="size-6 rotate-180"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </span>
-        <span className="font-medium transition-all group-hover:-ms-6 uppercase">
-          {" "}
-          Voltar{" "}
-        </span> */}
-      {/* </LoadingLink> */}
       <h1 className="title mb-1 font-medium text-2xl">
         {post.metadata.title}
       </h1>

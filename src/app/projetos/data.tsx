@@ -12,14 +12,14 @@ export const projects: Project[] = [
     year: 2024,
     description: "Commodities agropecuárias",
     url: "https://agrocomm.com.br",
-    repo: "https://github.com/sistematico/agrocomm"
+    repo: "https://github.com/agrocommodities/agrocomm"
   },
   {
     title: "FIPE",
     year: 2020,
     description: "Tabela fipe de veículos",
     url: "https://sistematico.github.io/fipe",
-    repo: "https://github.com/sistematico/agrocomm"
+    repo: "https://github.com/sistematico/fipe"
   },
   {
     title: "Next.js Simple Auth",
@@ -27,5 +27,12 @@ export const projects: Project[] = [
     description: "Um sistema simples de autenticação com Next.js, Drizzle e Bun",
     url: "https://auth.lucasbrum.dev",
     repo: "https://github.com/sistematico/nextjs-simple-auth"
+  },
+  {
+    title: "Next.js Stripe",
+    year: 2025,
+    description: "Um sistema simples de integração com Stripe usando Next.js",
+    url: "https://stripe.lucasbrum.dev",
+    repo: "https://github.com/sistematico/nextjs-stripe"
   },
 ];

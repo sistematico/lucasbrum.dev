@@ -240,7 +240,7 @@ export default function ContactForm() {
             id="captcha"
             placeholder="Resposta"
             disabled={isFormDisabled}
-            className="w-30 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-30 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             {...register("captcha")}
           />
           <button
@@ -265,10 +265,13 @@ export default function ContactForm() {
           type="submit"
           disabled={isFormDisabled}
           className="
-          rounded-md bg-blue-600 px-4 py-2 text-white 
-          hover:bg-blue-700 focus:outline-none 
+          rounded-md px-4 py-2 
+          text-black dark:text-white
+          border border-black/40 border-black/30 
+          hover:shadow-md hover:border-black/80 hover:bg-white/20 dark:hover:bg-black/50 focus:outline-none 
           focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
           disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
+          transition-all duration-200
         "
         >
           {isSubmitting

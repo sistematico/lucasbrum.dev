@@ -18,12 +18,12 @@ export function Button({
   return (
     <Link
       className={`
-        inline-flex items-center gap-2 
-        rounded-sm border border-black/40 
-        border-black/30 px-4 py-2 text-black dark:text-white
+        inline-flex rounded-sm items-center gap-2 px-4 py-2 shadow-sm
+        border border-black/40 border-black/30 
+        text-black dark:text-white
         hover:bg-transparent hover:text-black/70 dark:hover:text-white/70
         focus:ring-3 focus:outline-hidden
-        transition-all duration-200 shadow-sm
+        transition-all duration-200 
         ${className}
       `}
       href={href}
